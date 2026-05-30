@@ -5,9 +5,8 @@ import 'package:splittr/di/injection.dart';
 import 'package:splittr/utils/bloc_utils/bloc_utils.dart';
 
 abstract class BasePage<B extends BaseBloc> extends StatelessWidget {
+  const BasePage({required this.args, super.key});
   final Map<String, dynamic>? args;
-
-  const BasePage({super.key, required this.args});
 
   bool get showFullScreenLoader => true;
 

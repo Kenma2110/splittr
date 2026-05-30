@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:splittr/core/base/base_page/base_page.dart';
@@ -10,7 +12,7 @@ import 'package:splittr/features/signup/presentation/blocs/signup_bloc.dart';
 part 'signup_form.dart';
 
 class SignupPage extends BasePage<SignupBloc> {
-  const SignupPage({super.key, required super.args});
+  const SignupPage({required super.args, super.key});
 
   @override
   Widget buildScreen(BuildContext context) {

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:splittr/core/base/base_page/base_page.dart';
@@ -10,7 +12,7 @@ import 'package:splittr/utils/utils.dart';
 part 'otp_verification_form.dart';
 
 class OtpVerificationPage extends BasePage<OtpVerificationBloc> {
-  const OtpVerificationPage({super.key, required super.args});
+  const OtpVerificationPage({required super.args, super.key});
 
   @override
   Widget buildScreen(BuildContext context) {
@@ -40,7 +42,7 @@ class OtpVerificationPage extends BasePage<OtpVerificationBloc> {
   }
 
   void _showSnackBar(BuildContext context) {
-    showSnackBar(context, 'Otp Verified');
+    unawaited(showSnackBar(context, 'Otp Verified'));
   }
 
   void _onUserAuthenticateSuccessful({
@@ -55,6 +57,6 @@ class OtpVerificationPage extends BasePage<OtpVerificationBloc> {
   }
 
   void _navigateToDashboard(BuildContext context) {
-    RouteHandler.pushAndRemoveUntil(context, RouteId.dashboard);
+    unawaited(RouteHandler.pushAndRemoveUntil(context, RouteId.dashboard));
   }
 }

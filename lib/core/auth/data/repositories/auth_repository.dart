@@ -7,9 +7,8 @@ import 'package:splittr/utils/typedefs/typedefs.dart';
 
 @Singleton(as: IAuthRepository)
 final class AuthRepository implements IAuthRepository {
-  final FirebaseAuth _firebaseAuth;
-
   const AuthRepository(this._firebaseAuth);
+  final FirebaseAuth _firebaseAuth;
 
   @override
   bool get isUserSignedIn => _firebaseAuth.currentUser != null;
@@ -35,7 +34,7 @@ final class AuthRepository implements IAuthRepository {
         codeAutoRetrievalTimeout: (_) {},
         forceResendingToken: forceResendingToken,
       );
-    } catch (_) {}
+    } on Exception catch (_) {}
   }
 
   @override

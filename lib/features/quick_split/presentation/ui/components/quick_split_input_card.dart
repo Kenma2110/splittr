@@ -3,15 +3,15 @@ import 'package:splittr/core/designs/color/app_colors.dart';
 import 'package:splittr/core/designs/text_field/primary_text_field.dart';
 
 class QuickSplitInputCard extends StatelessWidget {
-  final VoidCallback onDelete;
-  final ValueChanged<String> onPersonNameChanged;
-  final ValueChanged<String> onAmountChanged;
   const QuickSplitInputCard({
-    super.key,
     required this.onDelete,
     required this.onPersonNameChanged,
     required this.onAmountChanged,
+    super.key,
   });
+  final VoidCallback onDelete;
+  final ValueChanged<String> onPersonNameChanged;
+  final ValueChanged<String> onAmountChanged;
 
   @override
   Widget build(BuildContext context) {

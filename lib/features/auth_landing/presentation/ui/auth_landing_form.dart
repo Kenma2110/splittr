@@ -14,7 +14,7 @@ class _AuthLandingForm extends StatelessWidget {
           AppFillButton(
             text: 'Quick Split',
             onTap: () {
-              RouteHandler.push(context, RouteId.quickSplit);
+              unawaited(RouteHandler.push(context, RouteId.quickSplit));
             },
             fillColor: AppColors.blackColor,
             borderColor: AppColors.blackColor,
@@ -24,7 +24,7 @@ class _AuthLandingForm extends StatelessWidget {
           AppFillButton(
             text: 'Login',
             onTap: () {
-              RouteHandler.push(context, RouteId.login);
+              unawaited(RouteHandler.push(context, RouteId.login));
             },
             fillColor: AppColors.denimColor,
             borderColor: AppColors.whiteColor,
@@ -34,7 +34,7 @@ class _AuthLandingForm extends StatelessWidget {
           AppFillButton(
             text: 'SignUp',
             onTap: () {
-              RouteHandler.push(context, RouteId.signup);
+              unawaited(RouteHandler.push(context, RouteId.signup));
             },
             fillColor: AppColors.whiteColor,
             borderColor: AppColors.whiteColor,

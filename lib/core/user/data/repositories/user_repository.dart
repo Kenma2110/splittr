@@ -7,10 +7,9 @@ import 'package:splittr/utils/typedefs/typedefs.dart';
 
 @Singleton(as: IUserRepository)
 final class UserRepository implements IUserRepository {
+  UserRepository(this._firestoreDatabaseRepository, this._authRepository);
   final IFirestoreDatabaseRepository _firestoreDatabaseRepository;
   final IAuthRepository _authRepository;
-
-  UserRepository(this._firestoreDatabaseRepository, this._authRepository);
 
   @override
   FutureEitherFailure<User> getUser() async {

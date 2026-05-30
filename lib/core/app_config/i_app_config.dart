@@ -12,16 +12,15 @@ part 'prod_app_config.dart';
 late final IAppConfig appConfig;
 
 abstract interface class IAppConfig {
-  Env get env;
-
-  FirebaseOptions get firebaseOptions;
-
-  String get appName;
-
   factory IAppConfig.init(Env env) {
     return switch (env) {
       Env.dev => const DevAppConfig._(),
       Env.prod => const ProdAppConfig._(),
     };
   }
+  Env get env;
+
+  FirebaseOptions get firebaseOptions;
+
+  String get appName;
 }

@@ -2,16 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:splittr/utils/keyboard/keyboard_utils.dart';
 
 class PrimaryTextField extends StatelessWidget {
-  final String? labelText;
-  final String? hintText;
-  final TextEditingController? controller;
-  final ValueChanged<String>? onChanged;
-  final VoidCallback? onEditingComplete;
-  final TextInputType? keyboardType;
-  final TextInputAction textInputAction;
-  final int? maxLength;
-  final bool obscureText;
-
   const PrimaryTextField({
     super.key,
     this.labelText,
@@ -24,6 +14,15 @@ class PrimaryTextField extends StatelessWidget {
     this.maxLength,
     this.obscureText = false,
   });
+  final String? labelText;
+  final String? hintText;
+  final TextEditingController? controller;
+  final ValueChanged<String>? onChanged;
+  final VoidCallback? onEditingComplete;
+  final TextInputType? keyboardType;
+  final TextInputAction textInputAction;
+  final int? maxLength;
+  final bool obscureText;
 
   @override
   Widget build(BuildContext context) {

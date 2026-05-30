@@ -15,10 +15,9 @@ part 'login_state.dart';
 
 @injectable
 final class LoginBloc extends BaseBloc<LoginEvent, LoginState> {
-  final IAuthRepository _authRepository;
-
   LoginBloc(this._authRepository)
     : super(const LoginState.initial(store: LoginStateStore()));
+  final IAuthRepository _authRepository;
 
   @override
   void handleEvents() {

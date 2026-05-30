@@ -6,7 +6,7 @@ import 'package:splittr/features/group_dashboard/presentation/blocs/group_dashbo
 part 'group_dashboard_form.dart';
 
 class GroupDashboardPage extends BasePage<GroupDashboardBloc> {
-  const GroupDashboardPage({super.key, required super.args});
+  const GroupDashboardPage({required super.args, super.key});
 
   @override
   Widget buildScreen(BuildContext context) {

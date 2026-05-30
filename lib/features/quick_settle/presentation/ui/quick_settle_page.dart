@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:splittr/core/base/base_page//base_page.dart';
@@ -12,7 +14,7 @@ import 'package:splittr/utils/bloc_utils/bloc_utils.dart';
 part 'quick_settle_form.dart';
 
 class QuickSettlePage extends BasePage<QuickSettleBloc> {
-  const QuickSettlePage({super.key, required super.args});
+  const QuickSettlePage({required super.args, super.key});
 
   @override
   Widget buildScreen(BuildContext context) {

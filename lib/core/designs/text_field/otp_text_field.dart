@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class OtpTextField extends StatelessWidget {
-  final ValueChanged<String>? onChanged;
-
   const OtpTextField({super.key, this.onChanged});
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {

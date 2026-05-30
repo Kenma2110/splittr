@@ -3,9 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:splittr/core/global/presentation/blocs/global_bloc.dart';
 
 class GlobalBlocsWidget extends StatelessWidget {
+  const GlobalBlocsWidget({required this.child, super.key});
   final Widget child;
-
-  const GlobalBlocsWidget({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {

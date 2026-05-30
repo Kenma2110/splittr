@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:splittr/core/designs/color/app_colors.dart';
 
 class BackgroundWrapper extends StatelessWidget {
-  final double heightFactor;
-  final Widget child;
   const BackgroundWrapper({
-    super.key,
     required this.heightFactor,
     required this.child,
+    super.key,
   });
+  final double heightFactor;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

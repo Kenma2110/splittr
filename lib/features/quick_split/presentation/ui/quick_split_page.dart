@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:splittr/constants/constants.dart';
@@ -13,7 +15,7 @@ import 'package:splittr/utils/snack_bar/snack_bar.dart';
 part 'quick_split_form.dart';
 
 class QuickSplitPage extends BasePage<QuickSplitBloc> {
-  const QuickSplitPage({super.key, required super.args});
+  const QuickSplitPage({required super.args, super.key});
 
   @override
   Widget buildScreen(BuildContext context) {
@@ -66,7 +68,7 @@ class QuickSplitPage extends BasePage<QuickSplitBloc> {
     required BuildContext context,
     required QuickSplitState state,
   }) {
-    RouteHandler.push(
+    unawaited(RouteHandler.push(
       context,
       RouteId.quickSettle,
       args: {
@@ -79,7 +81,7 @@ class QuickSplitPage extends BasePage<QuickSplitBloc> {
           );
         }).toList(),
       },
-    );
+    ));
   }
 
   Widget _handleWidget(BuildContext context, QuickSplitState state) {

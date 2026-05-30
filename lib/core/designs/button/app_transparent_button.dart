@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:splittr/core/designs/color/app_colors.dart';
 
 class AppTransparentButton extends StatelessWidget {
-  final String text;
-  final VoidCallback onTap;
-
   const AppTransparentButton({
-    super.key,
     required this.text,
     required this.onTap,
+    super.key,
   });
+  final String text;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {

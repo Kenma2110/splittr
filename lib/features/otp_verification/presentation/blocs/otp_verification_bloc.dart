@@ -17,13 +17,12 @@ part 'otp_verification_state.dart';
 @injectable
 final class OtpVerificationBloc
     extends BaseBloc<OtpVerificationEvent, OtpVerificationState> {
-  final IAuthRepository _authRepository;
-  final IUserRepository _userRepository;
-
   OtpVerificationBloc(this._authRepository, this._userRepository)
     : super(
         const OtpVerificationState.initial(store: OtpVerificationStateStore()),
       );
+  final IAuthRepository _authRepository;
+  final IUserRepository _userRepository;
 
   @override
   void handleEvents() {

@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 
 class AppFillButton extends StatelessWidget {
-  final String text;
-  final Color fillColor;
-  final Color borderColor;
-  final Color textColor;
-  final VoidCallback onTap;
-
   const AppFillButton({
-    super.key,
     required this.text,
     required this.fillColor,
     required this.borderColor,
     required this.textColor,
     required this.onTap,
+    super.key,
   });
+  final String text;
+  final Color fillColor;
+  final Color borderColor;
+  final Color textColor;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:splittr/constants/constants.dart';
@@ -13,7 +15,7 @@ import 'package:splittr/utils/utils.dart';
 part 'login_form.dart';
 
 class LoginPage extends BasePage<LoginBloc> {
-  const LoginPage({super.key, required super.args});
+  const LoginPage({required super.args, super.key});
 
   @override
   Widget buildScreen(BuildContext context) {
@@ -45,7 +47,7 @@ class LoginPage extends BasePage<LoginBloc> {
     if (state.store.phoneNumber == null || state.store.verificationId == null) {
       return;
     }
-    RouteHandler.push(
+    unawaited(RouteHandler.push(
       context,
       RouteId.otpVerification,
       args: {
@@ -53,7 +55,7 @@ class LoginPage extends BasePage<LoginBloc> {
         StringConstants.verificationId: state.store.verificationId,
         StringConstants.forceResendingToken: state.store.forceResendingToken,
       },
-    );
+    ));
   }
 
   Widget _handleWidget(BuildContext context, LoginState state) {

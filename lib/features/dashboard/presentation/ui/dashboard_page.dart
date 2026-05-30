@@ -8,7 +8,7 @@ import 'package:splittr/utils/bloc_utils/bloc_utils.dart';
 part 'dashboard_form.dart';
 
 class DashboardPage extends BasePage<DashboardBloc> {
-  const DashboardPage({super.key, required super.args});
+  const DashboardPage({required super.args, super.key});
 
   @override
   Widget buildScreen(BuildContext context) {

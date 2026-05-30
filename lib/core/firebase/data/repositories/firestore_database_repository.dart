@@ -13,12 +13,11 @@ import 'package:splittr/utils/typedefs/typedefs.dart';
 @Singleton(as: IFirestoreDatabaseRepository)
 final class FirestoreDatabaseRepository
     implements IFirestoreDatabaseRepository {
-  final CollectionReference<Map<String, dynamic>> _userCollection;
-
   FirestoreDatabaseRepository(FirebaseFirestore firebaseFirestoreDb)
     : _userCollection = firebaseFirestoreDb.collection(
         FirebaseFirestoreCollectionKeys.users,
       );
+  final CollectionReference<Map<String, dynamic>> _userCollection;
 
   @override
   FutureEitherFailure<User> getUser(String userId) async {
@@ -34,7 +33,7 @@ final class FirestoreDatabaseRepository
       }
 
       return left(const Failure(message: 'User Not Found'));
-    } catch (_) {
+    } on Exception catch (_) {
       return left(const Failure(message: 'Failed to fetch user'));
     }
   }
@@ -50,7 +49,7 @@ final class FirestoreDatabaseRepository
           .set(user.toJson()..addAll(_timeStamps()));
 
       return right(User.fromDto(user));
-    } catch (e) {
+    } on Exception catch (_) {
       return left(const Failure(message: 'Failed to save data'));
     }
   }
@@ -65,7 +64,7 @@ final class FirestoreDatabaseRepository
           .doc(user.userId)
           .update(user.toJson()..addAll(_updatedAtTimeStamp()));
       return right(User.fromDto(user));
-    } catch (e) {
+    } on Exception catch (_) {
       return left(const Failure(message: 'Failed to update data'));
     }
   }
@@ -76,7 +75,7 @@ final class FirestoreDatabaseRepository
       await _userCollection.doc(userId).delete();
 
       return right(unit);
-    } catch (_) {
+    } on Exception catch (_) {
       return left(const Failure(message: 'Failed to delete user'));
     }
   }

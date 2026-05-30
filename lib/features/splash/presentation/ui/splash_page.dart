@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:splittr/constants/constants.dart';
@@ -12,7 +14,7 @@ import 'package:splittr/utils/bloc_utils/bloc_utils.dart';
 part 'splash_form.dart';
 
 class SplashPage extends BasePage<SplashBloc> {
-  const SplashPage({super.key, required super.args});
+  const SplashPage({required super.args, super.key});
 
   @override
   bool get showFullScreenLoader => false;
@@ -45,10 +47,10 @@ class SplashPage extends BasePage<SplashBloc> {
   }
 
   void _navigateToDashboardPage(BuildContext context) {
-    RouteHandler.pushReplacement(context, RouteId.dashboard);
+    unawaited(RouteHandler.pushReplacement(context, RouteId.dashboard));
   }
 
   void _navigateToAuthLandingPage(BuildContext context) {
-    RouteHandler.pushReplacement(context, RouteId.authLanding);
+    unawaited(RouteHandler.pushReplacement(context, RouteId.authLanding));
   }
 }

@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:splittr/core/designs/color/app_colors.dart';
 
 class SummaryBottomSheet extends StatelessWidget {
+  const SummaryBottomSheet({required this.summaryMap, super.key});
   final Map<String, List<Map<String, double>>> summaryMap;
-
-  const SummaryBottomSheet({super.key, required this.summaryMap});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +32,8 @@ class SummaryBottomSheet extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: summaryMap.entries.map<Widget>((entry) {
-                  final String receiver = entry.key;
-                  final List<Map<String, double>> givers =
-                      List<Map<String, double>>.from(entry.value);
+                  final receiver = entry.key;
+                  final givers = List<Map<String, double>>.from(entry.value);
 
                   return Card(
                     color: AppColors.greyColor,
@@ -64,8 +62,8 @@ class SummaryBottomSheet extends StatelessWidget {
                           const SizedBox(height: 10),
                           Column(
                             children: givers.map<Widget>((giverMap) {
-                              final String giver = giverMap.keys.first;
-                              final double amount = giverMap.values.first;
+                              final giver = giverMap.keys.first;
+                              final amount = giverMap.values.first;
 
                               return Padding(
                                 padding: const EdgeInsets.symmetric(

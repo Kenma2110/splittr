@@ -6,8 +6,8 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.9.2 <4.0.0'
-  flutter: '3.35.7'
+  sdk: '>=3.12.0 <4.0.0'
+  flutter: '3.44.0'
 
 dependencies:
   bloc: ^9.0.0
@@ -46,8 +46,6 @@ dependencies:
 dev_dependencies:
   build_runner: ^2.4.12
 
-  flutter_lints: ^6.0.0
-
   flutter_test:
     sdk: flutter
 
@@ -56,6 +54,12 @@ dev_dependencies:
   injectable_generator: ^2.6.2
 
   json_serializable: ^6.8.0
+
+  sky_lints:
+    git:
+      url: git@github.com:Saurrabhh/sky_core.git
+      path: packages/sky_lints
+      ref: sky_lints-v1.0.0
 
 flutter:
   uses-material-design: true

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,11 +18,10 @@ part 'splash_state.dart';
 
 @injectable
 final class SplashBloc extends BaseBloc<SplashEvent, SplashState> {
-  final IAuthRepository _authRepository;
-  final IUserRepository _userRepository;
-
   SplashBloc(this._authRepository, this._userRepository)
     : super(const SplashState.initial(store: SplashStateStore()));
+  final IAuthRepository _authRepository;
+  final IUserRepository _userRepository;
 
   @override
   void handleEvents() {
@@ -38,7 +39,7 @@ final class SplashBloc extends BaseBloc<SplashEvent, SplashState> {
   }
 
   Future<void> _showSplash() async {
-    await Future.delayed(const Duration(seconds: 3));
+    await Future<void>.delayed(const Duration(seconds: 3));
   }
 
   Future<Either<Failure, User>> _checkAuth() async {
@@ -46,7 +47,7 @@ final class SplashBloc extends BaseBloc<SplashEvent, SplashState> {
       final userOrFailure = await _userRepository.getUser();
 
       return userOrFailure.fold((_) {
-        _authRepository.logout();
+        unawaited(_authRepository.logout());
 
         return userOrFailure;
       }, right);

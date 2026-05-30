@@ -3,7 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:splittr/constants/env/env.dart';
 import 'package:splittr/di/injection.config.dart';
 
-final getIt = GetIt.instance;
+final GetIt getIt = GetIt.instance;
 
 @injectableInit
 void configureDependencies(Env env) => getIt.init(environment: env.name);

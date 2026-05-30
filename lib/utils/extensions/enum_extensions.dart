@@ -8,7 +8,7 @@ extension EnumIterableX<E extends Enum?> on Iterable<E> {
             element != null &&
             element.name.constantCase == enumString?.constantCase,
       );
-    } catch (_) {
+    } on Exception catch (_) {
       return null;
     }
   }

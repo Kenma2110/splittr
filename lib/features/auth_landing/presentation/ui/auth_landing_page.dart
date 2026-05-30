@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -11,7 +13,7 @@ import 'package:splittr/features/auth_landing/presentation/blocs/auth_landing_bl
 part 'auth_landing_form.dart';
 
 class AuthLandingPage extends BasePage<AuthLandingBloc> {
-  const AuthLandingPage({super.key, required super.args});
+  const AuthLandingPage({required super.args, super.key});
 
   @override
   Widget buildScreen(BuildContext context) {

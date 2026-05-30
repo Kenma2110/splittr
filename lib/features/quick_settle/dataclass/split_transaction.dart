@@ -1,8 +1,4 @@
 class SplitTransaction {
-  late String sender;
-  late String receiver;
-  late double amount;
-
   SplitTransaction(this.sender, this.receiver, this.amount);
 
   factory SplitTransaction.fromJson(Map<String, dynamic> json) {
@@ -12,6 +8,9 @@ class SplitTransaction {
       json['amount'] as double,
     );
   }
+  late String sender;
+  late String receiver;
+  late double amount;
 
   Map<String, dynamic> toJson() => {
     'sender': sender,

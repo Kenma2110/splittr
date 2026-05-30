@@ -7,9 +7,7 @@ import 'package:splittr/core/failure/failure.dart';
 import 'package:splittr/features/quick_settle/dataclass/split_transaction.dart';
 
 part 'quick_settle_bloc.freezed.dart';
-
 part 'quick_settle_event.dart';
-
 part 'quick_settle_state.dart';
 
 @injectable
@@ -33,9 +31,9 @@ final class QuickSettleBloc
     for (final person in people) {
       total += person.amount;
     }
-    final double individualShare = total / people.length;
+    final individualShare = total / people.length;
 
-    final List<double> individualShareList = List<double>.generate(
+    final individualShareList = List<double>.generate(
       people.length,
       (index) => people[index].amount - individualShare,
     );
@@ -59,18 +57,18 @@ final class QuickSettleBloc
     Emitter<QuickSettleState> emit,
   ) {
     final people = state.store.peopleRecord;
-    final List<double> individualShareList = List.from(
+    final individualShareList = List<double>.from(
       state.store.individualShareList,
     );
-    final List<Map<String, String>> finalTransaction = [];
-    final List<SplitTransaction> tags = [];
-    final Map<String, List<Map<String, double>>> summaryMap = {};
+    final finalTransaction = <Map<String, String>>[];
+    final tags = <SplitTransaction>[];
+    final summaryMap = <String, List<Map<String, double>>>{};
 
-    int i = 0;
-    int j = people.length - 1;
+    var i = 0;
+    var j = people.length - 1;
 
     while (i < j) {
-      final double sum = individualShareList[i] + individualShareList[j];
+      final sum = individualShareList[i] + individualShareList[j];
       if (sum > 0) {
         finalTransaction.add({
           people[i].name: '${people[j].name}|${individualShareList[i]}',
@@ -121,12 +119,12 @@ final class QuickSettleBloc
     }
 
     for (final item in finalTransaction) {
-      final String giver = item.keys.first;
-      final String value = item.values.first;
+      final giver = item.keys.first;
+      final value = item.values.first;
 
-      final List<String> splitValue = value.split('|');
-      final String receiver = splitValue[0];
-      final double amount = double.parse(splitValue[1]);
+      final splitValue = value.split('|');
+      final receiver = splitValue[0];
+      final amount = double.parse(splitValue[1]);
 
       if (!summaryMap.containsKey(receiver)) {
         summaryMap[receiver] = [];
@@ -159,7 +157,9 @@ final class QuickSettleBloc
 
   @override
   void started({Map<String, dynamic>? args}) {
-    final peopleRecords = args?[StringConstants.peopleRecords];
+    final peopleRecords =
+        args?[StringConstants.peopleRecords]
+            as List<({double amount, String name})>;
     add(QuickSettleEvent.started(peopleRecord: peopleRecords));
   }
 

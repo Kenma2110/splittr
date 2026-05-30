@@ -4,15 +4,6 @@ part 'personal_transaction_dto.g.dart';
 
 @JsonSerializable()
 class PersonalTransactionDto {
-  final String? transactionId;
-  final String? userId;
-  final String? title;
-  final double? amount;
-  final String? note;
-  final String? category;
-  final DateTime? createdAt;
-  final DateTime? updatedAt;
-
   const PersonalTransactionDto({
     this.transactionId,
     this.userId,
@@ -26,6 +17,14 @@ class PersonalTransactionDto {
 
   factory PersonalTransactionDto.fromJson(Map<String, dynamic> json) =>
       _$PersonalTransactionDtoFromJson(json);
+  final String? transactionId;
+  final String? userId;
+  final String? title;
+  final double? amount;
+  final String? note;
+  final String? category;
+  final DateTime? createdAt;
+  final DateTime? updatedAt;
 
   Map<String, dynamic> toJson() => _$PersonalTransactionDtoToJson(this);
 }
