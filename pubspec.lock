@@ -53,10 +53,10 @@ packages:
     dependency: "direct main"
     description:
       name: bloc
-      sha256: a2cebb899f91d36eeeaa55c7b20b5915db5a9df1b8fd4a3c9c825e22e474537d
+      sha256: e03b235924e4f509c27b5d6b2f949200e0a91149a9818b4f65eeb56662b75413
       url: "https://pub.dev"
     source: hosted
-    version: "9.1.0"
+    version: "9.2.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -209,6 +209,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.3"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: "3e0141505477fd8ad55d6eb4e7776d3fe8430be8e497ccb1521370c3f21a3e2b"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.8"
   fake_async:
     dependency: transitive
     description:
@@ -456,6 +464,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.2"
+  logger:
+    dependency: transitive
+    description:
+      name: logger
+      sha256: "25aee487596a6257655a1e091ec2ae66bc30e7af663592cc3a27e6591e05035c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.7.0"
   logging:
     dependency: transitive
     description:
@@ -608,6 +624,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
+  sky_architecture:
+    dependency: "direct main"
+    description:
+      name: sky_architecture
+      sha256: d68e07739acd0449d2585ede5bfee0d90ef05109a90bbea91e06d1ebb0d8593c
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
+  sky_bloc:
+    dependency: "direct main"
+    description:
+      name: sky_bloc
+      sha256: "1688f816da22f8343aa505156f58f2d3a0be2b4a83bde43e9af99587b846c476"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.2"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -622,6 +654,14 @@ packages:
       url: "git@github.com:Saurrabhh/sky_core.git"
     source: git
     version: "1.0.0"
+  sky_telemetry:
+    dependency: transitive
+    description:
+      name: sky_telemetry
+      sha256: "361239fdefb6295250def9d504e3f4ab56daaf783911b7bc164aed60bedc32ac"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   source_gen:
     dependency: transitive
     description:

@@ -18,13 +18,14 @@ sealed class GroupDashboardState extends BaseState with _$GroupDashboardState {
   }) = OnFailure;
 
   @override
-  BaseState getFailureState(Failure failure) => GroupDashboardState.onFailure(
-    store: store.copyWith(loading: false),
-    failure: failure,
-  );
+  BaseState getFailureState({required Failure failure}) =>
+      GroupDashboardState.onFailure(
+        store: store.copyWith(loading: false),
+        failure: failure,
+      );
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
+  BaseState getLoadingState({required bool loading}) =>
       GroupDashboardState.changeLoaderState(
         store: store.copyWith(loading: loading),
       );

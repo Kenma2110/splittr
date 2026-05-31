@@ -20,13 +20,13 @@ sealed class LoginState extends BaseState with _$LoginState {
   }) = OnFailure;
 
   @override
-  BaseState getFailureState(Failure failure) => LoginState.onFailure(
+  BaseState getFailureState({required Failure failure}) => LoginState.onFailure(
     store: store.copyWith(loading: false),
     failure: failure,
   );
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
+  BaseState getLoadingState({required bool loading}) =>
       LoginState.changeLoaderState(store: store.copyWith(loading: loading));
 }
 

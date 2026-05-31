@@ -17,13 +17,14 @@ sealed class GroupsState extends BaseState with _$GroupsState {
   }) = OnFailure;
 
   @override
-  BaseState getFailureState(Failure failure) => GroupsState.onFailure(
-    store: store.copyWith(loading: false),
-    failure: failure,
-  );
+  BaseState getFailureState({required Failure failure}) =>
+      GroupsState.onFailure(
+        store: store.copyWith(loading: false),
+        failure: failure,
+      );
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
+  BaseState getLoadingState({required bool loading}) =>
       GroupsState.changeLoaderState(store: store.copyWith(loading: loading));
 }
 

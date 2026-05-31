@@ -18,13 +18,14 @@ sealed class QuickSettleState extends BaseState with _$QuickSettleState {
   }) = OnFailure;
 
   @override
-  BaseState getFailureState(Failure failure) => QuickSettleState.onFailure(
-    store: store.copyWith(loading: false),
-    failure: failure,
-  );
+  BaseState getFailureState({required Failure failure}) =>
+      QuickSettleState.onFailure(
+        store: store.copyWith(loading: false),
+        failure: failure,
+      );
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
+  BaseState getLoadingState({required bool loading}) =>
       QuickSettleState.changeLoaderState(
         store: store.copyWith(loading: loading),
       );

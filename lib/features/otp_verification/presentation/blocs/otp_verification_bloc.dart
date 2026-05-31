@@ -1,17 +1,15 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sky_architecture/sky_architecture.dart';
+import 'package:sky_bloc/sky_bloc.dart';
 import 'package:splittr/constants/constants.dart';
 import 'package:splittr/core/auth/domain/repositories/i_auth_repository.dart';
-import 'package:splittr/core/base/base_bloc/base_bloc.dart';
-import 'package:splittr/core/failure/failure.dart';
 import 'package:splittr/core/user/domain/domain/repositories/i_user_repository.dart';
 import 'package:splittr/core/user/domain/models/user.dart';
 
 part 'otp_verification_bloc.freezed.dart';
-
 part 'otp_verification_event.dart';
-
 part 'otp_verification_state.dart';
 
 @injectable
@@ -61,7 +59,7 @@ final class OtpVerificationBloc
       return;
     }
 
-    changeLoaderState(emit: emit, loading: true);
+    setLoading(emit: emit, loading: true);
 
     final verifyOtpOrFailure = await _authRepository.verifyOtp(
       otp: otp ?? '',

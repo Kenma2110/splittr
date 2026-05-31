@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:splittr/core/base/base_bloc/base_bloc.dart';
+import 'package:sky_bloc/sky_bloc.dart';
 import 'package:splittr/di/injection.dart';
 import 'package:splittr/utils/bloc_utils/bloc_utils.dart';
 

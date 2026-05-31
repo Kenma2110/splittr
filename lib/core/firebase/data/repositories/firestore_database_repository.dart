@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sky_architecture/sky_architecture.dart';
 import 'package:splittr/constants/constants.dart';
 import 'package:splittr/constants/string_constants/string_constants.dart';
-import 'package:splittr/core/failure/failure.dart';
 import 'package:splittr/core/firebase/constants/collection_keys.dart';
 import 'package:splittr/core/firebase/domain/repositories/i_firestore_database_repository.dart';
 import 'package:splittr/core/user/data/dtos/user_dto.dart';
@@ -32,9 +32,9 @@ final class FirestoreDatabaseRepository
         return right(User.fromDto(dto));
       }
 
-      return left(const Failure(message: 'User Not Found'));
+      return left(const ServerFailure(message: 'User Not Found'));
     } on Exception catch (_) {
-      return left(const Failure(message: 'Failed to fetch user'));
+      return left(const ServerFailure(message: 'Failed to fetch user'));
     }
   }
 
@@ -42,7 +42,7 @@ final class FirestoreDatabaseRepository
   FutureEitherFailure<User> createUser(UserDto user) async {
     try {
       if (user.userId == null) {
-        return left(const Failure(message: 'No userId present'));
+        return left(const ServerFailure(message: 'No userId present'));
       }
       await _userCollection
           .doc(user.userId)
@@ -50,7 +50,7 @@ final class FirestoreDatabaseRepository
 
       return right(User.fromDto(user));
     } on Exception catch (_) {
-      return left(const Failure(message: 'Failed to save data'));
+      return left(const ServerFailure(message: 'Failed to save data'));
     }
   }
 
@@ -58,14 +58,14 @@ final class FirestoreDatabaseRepository
   FutureEitherFailure<User> updateUser(UserDto user) async {
     try {
       if (user.userId == null) {
-        return left(const Failure(message: 'No userId present'));
+        return left(const ServerFailure(message: 'No userId present'));
       }
       await _userCollection
           .doc(user.userId)
           .update(user.toJson()..addAll(_updatedAtTimeStamp()));
       return right(User.fromDto(user));
     } on Exception catch (_) {
-      return left(const Failure(message: 'Failed to update data'));
+      return left(const ServerFailure(message: 'Failed to update data'));
     }
   }
 
@@ -76,7 +76,7 @@ final class FirestoreDatabaseRepository
 
       return right(unit);
     } on Exception catch (_) {
-      return left(const Failure(message: 'Failed to delete user'));
+      return left(const ServerFailure(message: 'Failed to delete user'));
     }
   }
 

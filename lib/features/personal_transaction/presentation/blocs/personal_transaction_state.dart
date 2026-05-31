@@ -19,14 +19,14 @@ sealed class PersonalTransactionState extends BaseState
   }) = OnFailure;
 
   @override
-  BaseState getFailureState(Failure failure) =>
+  BaseState getFailureState({required Failure failure}) =>
       PersonalTransactionState.onFailure(
         store: store.copyWith(loading: false),
         failure: failure,
       );
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
+  BaseState getLoadingState({required bool loading}) =>
       PersonalTransactionState.changeLoaderState(
         store: store.copyWith(loading: loading),
       );

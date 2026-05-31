@@ -17,13 +17,14 @@ sealed class SignupState extends BaseState with _$SignupState {
   }) = OnFailure;
 
   @override
-  BaseState getFailureState(Failure failure) => SignupState.onFailure(
-    store: store.copyWith(loading: false),
-    failure: failure,
-  );
+  BaseState getFailureState({required Failure failure}) =>
+      SignupState.onFailure(
+        store: store.copyWith(loading: false),
+        failure: failure,
+      );
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
+  BaseState getLoadingState({required bool loading}) =>
       SignupState.changeLoaderState(store: store.copyWith(loading: loading));
 }
 

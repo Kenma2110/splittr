@@ -4,16 +4,14 @@ import 'package:bloc/bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sky_architecture/sky_architecture.dart';
+import 'package:sky_bloc/sky_bloc.dart';
 import 'package:splittr/core/auth/domain/repositories/i_auth_repository.dart';
-import 'package:splittr/core/base/base_bloc/base_bloc.dart';
-import 'package:splittr/core/failure/failure.dart';
 import 'package:splittr/core/user/domain/domain/repositories/i_user_repository.dart';
 import 'package:splittr/core/user/domain/models/user.dart';
 
 part 'splash_bloc.freezed.dart';
-
 part 'splash_event.dart';
-
 part 'splash_state.dart';
 
 @injectable
@@ -53,7 +51,7 @@ final class SplashBloc extends BaseBloc<SplashEvent, SplashState> {
       }, right);
     }
 
-    return left(const Failure(message: 'Not Signed In'));
+    return left(const ServerFailure(message: 'Not Signed In'));
   }
 
   @override

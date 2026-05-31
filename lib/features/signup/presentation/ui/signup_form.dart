@@ -81,10 +81,12 @@ class _SignupForm extends StatelessWidget {
                         WidgetSpan(
                           child: GestureDetector(
                             onTap: () {
-                              unawaited(RouteHandler.pushAndRemoveUntil(
-                                context,
-                                RouteId.login,
-                              ));
+                              unawaited(
+                                RouteHandler.pushAndRemoveUntil(
+                                  context,
+                                  RouteId.login,
+                                ),
+                              );
                             },
                             child: const Text(
                               'Login',

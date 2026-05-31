@@ -20,13 +20,14 @@ sealed class GlobalState extends BaseState with _$GlobalState {
   }) = OnFailure;
 
   @override
-  BaseState getFailureState(Failure failure) => GlobalState.onFailure(
-    store: store.copyWith(loading: false),
-    failure: failure,
-  );
+  BaseState getFailureState({required Failure failure}) =>
+      GlobalState.onFailure(
+        store: store.copyWith(loading: false),
+        failure: failure,
+      );
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
+  BaseState getLoadingState({required bool loading}) =>
       GlobalState.changeLoaderState(store: store.copyWith(loading: loading));
 }
 

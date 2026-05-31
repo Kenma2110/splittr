@@ -26,13 +26,14 @@ sealed class SplashState extends BaseState with _$SplashState {
   }) = OnFailure;
 
   @override
-  BaseState getFailureState(Failure failure) => SplashState.onFailure(
-    store: store.copyWith(loading: false),
-    failure: failure,
-  );
+  BaseState getFailureState({required Failure failure}) =>
+      SplashState.onFailure(
+        store: store.copyWith(loading: false),
+        failure: failure,
+      );
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
+  BaseState getLoadingState({required bool loading}) =>
       SplashState.changeLoaderState(store: store.copyWith(loading: loading));
 }
 

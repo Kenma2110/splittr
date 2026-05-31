@@ -1,5 +1,5 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:splittr/core/failure/failure.dart';
+import 'package:sky_architecture/sky_architecture.dart';
 
 typedef OtpSentCallback =
     void Function(String verificationId, int? forceResendingToken);

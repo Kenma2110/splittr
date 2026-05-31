@@ -68,20 +68,22 @@ class QuickSplitPage extends BasePage<QuickSplitBloc> {
     required BuildContext context,
     required QuickSplitState state,
   }) {
-    unawaited(RouteHandler.push(
-      context,
-      RouteId.quickSettle,
-      args: {
-        StringConstants.peopleRecords: state.store.peopleRecords.map((
-          peopleRecord,
-        ) {
-          return (
-            name: peopleRecord.name,
-            amount: double.tryParse(peopleRecord.amount) ?? 0,
-          );
-        }).toList(),
-      },
-    ));
+    unawaited(
+      RouteHandler.push(
+        context,
+        RouteId.quickSettle,
+        args: {
+          StringConstants.peopleRecords: state.store.peopleRecords.map((
+            peopleRecord,
+          ) {
+            return (
+              name: peopleRecord.name,
+              amount: double.tryParse(peopleRecord.amount) ?? 0,
+            );
+          }).toList(),
+        },
+      ),
+    );
   }
 
   Widget _handleWidget(BuildContext context, QuickSplitState state) {

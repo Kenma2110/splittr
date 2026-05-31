@@ -47,15 +47,17 @@ class LoginPage extends BasePage<LoginBloc> {
     if (state.store.phoneNumber == null || state.store.verificationId == null) {
       return;
     }
-    unawaited(RouteHandler.push(
-      context,
-      RouteId.otpVerification,
-      args: {
-        StringConstants.phoneNumber: state.store.phoneNumber,
-        StringConstants.verificationId: state.store.verificationId,
-        StringConstants.forceResendingToken: state.store.forceResendingToken,
-      },
-    ));
+    unawaited(
+      RouteHandler.push(
+        context,
+        RouteId.otpVerification,
+        args: {
+          StringConstants.phoneNumber: state.store.phoneNumber,
+          StringConstants.verificationId: state.store.verificationId,
+          StringConstants.forceResendingToken: state.store.forceResendingToken,
+        },
+      ),
+    );
   }
 
   Widget _handleWidget(BuildContext context, LoginState state) {

@@ -32,13 +32,14 @@ sealed class OtpVerificationState extends BaseState
   }) = OnFailure;
 
   @override
-  BaseState getFailureState(Failure failure) => OtpVerificationState.onFailure(
-    store: store.copyWith(loading: false),
-    failure: failure,
-  );
+  BaseState getFailureState({required Failure failure}) =>
+      OtpVerificationState.onFailure(
+        store: store.copyWith(loading: false),
+        failure: failure,
+      );
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
+  BaseState getLoadingState({required bool loading}) =>
       OtpVerificationState.changeLoaderState(
         store: store.copyWith(loading: loading),
       );

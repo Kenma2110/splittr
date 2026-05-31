@@ -18,13 +18,14 @@ sealed class AuthLandingState extends BaseState with _$AuthLandingState {
   }) = OnFailure;
 
   @override
-  BaseState getFailureState(Failure failure) => AuthLandingState.onFailure(
-    store: store.copyWith(loading: false),
-    failure: failure,
-  );
+  BaseState getFailureState({required Failure failure}) =>
+      AuthLandingState.onFailure(
+        store: store.copyWith(loading: false),
+        failure: failure,
+      );
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
+  BaseState getLoadingState({required bool loading}) =>
       AuthLandingState.changeLoaderState(
         store: store.copyWith(loading: loading),
       );
