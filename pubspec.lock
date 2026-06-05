@@ -876,10 +876,10 @@ packages:
     dependency: "direct main"
     description:
       name: sky_bloc
-      sha256: "97c60c258d36bb9a4a7cd88d51a119cd8d1ed092e328b959a18801304e268fcd"
+      sha256: a9edca6e03d356bc110676f0fea0f76fb87eb63282af8435591322c3b2800c58
       url: "https://pub.dev"
     source: hosted
-    version: "1.2.1"
+    version: "1.2.3"
   sky_design_system:
     dependency: "direct main"
     description:
