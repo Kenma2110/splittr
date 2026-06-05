@@ -42,7 +42,7 @@ dependencies:
   recase: 4.1.0
 
   sky_architecture: ^1.0.2
-  sky_bloc: ^1.1.2
+  sky_bloc: ^1.2.1
   sky_design_system: ^1.1.0
   sky_utils: ^1.0.2
 

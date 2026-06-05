@@ -1,4 +1,6 @@
-include: package:sky_lints/analysis_options.yaml
+include:
+  - package:sky_lints/analysis_options.yaml
+  - package:sky_bloc/analysis_options.yaml
 
 analyzer:
   exclude:
