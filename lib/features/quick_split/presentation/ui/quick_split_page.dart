@@ -2,23 +2,29 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sky_bloc/sky_bloc.dart';
 import 'package:sky_design_system/sky_design_system.dart' show AppSnackBar;
 import 'package:splittr/constants/constants.dart';
-import 'package:splittr/core/base/base_page/base_page.dart';
 import 'package:splittr/core/designs/color/app_colors.dart';
 import 'package:splittr/core/designs/components/background_wrapper.dart';
 import 'package:splittr/core/route_handler/route_handler.dart';
+import 'package:splittr/di/injection.dart';
 import 'package:splittr/features/quick_split/presentation/blocs/quick_split_bloc.dart';
 import 'package:splittr/features/quick_split/presentation/ui/components/quick_split_input_card.dart';
 import 'package:splittr/utils/bloc_utils/bloc_utils.dart';
 
 part 'quick_split_form.dart';
 
-class QuickSplitPage extends BasePage<QuickSplitBloc> {
-  const QuickSplitPage({required super.args, super.key});
+class QuickSplitPage extends BasePage<QuickSplitBloc, QuickSplitState> {
+  const QuickSplitPage({required this.args, super.key});
+
+  final Map<String, dynamic>? args;
 
   @override
-  Widget buildScreen(BuildContext context) {
+  QuickSplitBloc createBloc() => getIt<QuickSplitBloc>()..started(args: args);
+
+  @override
+  Widget buildPage(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.blueBgColor,
@@ -42,14 +48,12 @@ class QuickSplitPage extends BasePage<QuickSplitBloc> {
           ),
         ),
       ),
-      body: BlocConsumer<QuickSplitBloc, QuickSplitState>(
-        listener: _handleState,
-        builder: _handleWidget,
-      ),
+      body: const _QuickSplitForm(),
     );
   }
 
-  void _handleState(BuildContext context, QuickSplitState state) {
+  @override
+  void handleStateChange(BuildContext context, QuickSplitState state) {
     return switch (state) {
       InvalidAmount(:final invalidAmount) =>
         invalidAmount.isEmpty
@@ -90,9 +94,5 @@ class QuickSplitPage extends BasePage<QuickSplitBloc> {
         },
       ),
     );
-  }
-
-  Widget _handleWidget(BuildContext context, QuickSplitState state) {
-    return const _QuickSplitForm();
   }
 }

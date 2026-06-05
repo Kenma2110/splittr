@@ -1,36 +1,34 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sky_bloc/sky_bloc.dart';
 import 'package:splittr/constants/constants.dart';
-import 'package:splittr/core/base/base_page/base_page.dart';
 import 'package:splittr/core/designs/button/app_transparent_button.dart';
 import 'package:splittr/core/designs/color/app_colors.dart';
 import 'package:splittr/core/designs/designs.dart';
 import 'package:splittr/core/route_handler/route_handler.dart';
+import 'package:splittr/di/injection.dart';
 import 'package:splittr/features/login/presentation/blocs/login_bloc.dart';
 import 'package:splittr/utils/bloc_utils/bloc_utils.dart';
 import 'package:splittr/utils/utils.dart';
 
 part 'login_form.dart';
 
-class LoginPage extends BasePage<LoginBloc> {
-  const LoginPage({required super.args, super.key});
+class LoginPage extends BasePage<LoginBloc, LoginState> {
+  const LoginPage({required this.args, super.key});
+
+  final Map<String, dynamic>? args;
 
   @override
-  Widget buildScreen(BuildContext context) {
-    return Scaffold(
-      body: BlocConsumer<LoginBloc, LoginState>(
-        buildWhen: (_, _) {
-          return false;
-        },
-        listener: _handleState,
-        builder: _handleWidget,
-      ),
-    );
+  LoginBloc createBloc() => getIt<LoginBloc>()..started(args: args);
+
+  @override
+  Widget buildPage(BuildContext context) {
+    return const Scaffold(body: _LoginForm());
   }
 
-  void _handleState(BuildContext context, LoginState state) {
+  @override
+  void handleStateChange(BuildContext context, LoginState state) {
     return switch (state) {
       OtpSent _ => _navigateToLoginOtpVerificationPage(
         context: context,
@@ -58,9 +56,5 @@ class LoginPage extends BasePage<LoginBloc> {
         },
       ),
     );
-  }
-
-  Widget _handleWidget(BuildContext context, LoginState state) {
-    return const _LoginForm();
   }
 }

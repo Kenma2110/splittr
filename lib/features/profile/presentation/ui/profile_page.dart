@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:splittr/core/base/base_page/base_page.dart';
+import 'package:sky_bloc/sky_bloc.dart';
+import 'package:splittr/di/injection.dart';
 import 'package:splittr/features/profile/presentation/blocs/profile_bloc.dart';
 
 part 'profile_form.dart';
 
-class ProfilePage extends BasePage<ProfileBloc> {
-  const ProfilePage({required super.args, super.key});
+class ProfilePage extends BasePage<ProfileBloc, ProfileState> {
+  const ProfilePage({required this.args, super.key});
+
+  final Map<String, dynamic>? args;
 
   @override
-  Widget buildScreen(BuildContext context) {
-    return Scaffold(
-      body: BlocConsumer<ProfileBloc, ProfileState>(
-        listener: _handleState,
-        builder: _handleWidget,
-      ),
-    );
-  }
+  ProfileBloc createBloc() => getIt<ProfileBloc>()..started(args: args);
 
-  void _handleState(BuildContext context, ProfileState state) {}
-
-  Widget _handleWidget(BuildContext context, ProfileState state) {
-    return const _ProfileForm();
+  @override
+  Widget buildPage(BuildContext context) {
+    return const Scaffold(body: _ProfileForm());
   }
 }
