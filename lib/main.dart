@@ -8,6 +8,7 @@ import 'package:splittr/core/route_handler/route_handler.dart';
 import 'package:splittr/core/route_handler/route_observer.dart';
 import 'package:splittr/di/injection.dart';
 import 'package:splittr/features/auth/presentation/blocs/auth_bloc.dart';
+import 'package:splittr/l10n/generated/app_localizations.dart';
 
 Future<void> mainCommon(Env env) async {
   appConfig = IAppConfig.init(env);
@@ -36,6 +37,8 @@ class MyApp extends StatelessWidget {
         theme: AppTheme.light(),
         darkTheme: AppTheme.dark(),
         navigatorObservers: [CustomNavigatorObserver()],
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
       ),
     );
   }

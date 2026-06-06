@@ -1,7 +1,12 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:sky_design_system/sky_design_system.dart'
-    show AppButton, AppScrollView, AppSliverScrollView, AppTextField, AppTopBar;
-import 'package:splittr/core/app_config/i_app_config.dart';
+import 'package:sky_design_system/sky_design_system.dart';
+import 'package:splittr/core/route_handler/route_handler.dart';
+import 'package:splittr/features/auth/presentation/pages/widgets/apple_sign_in_button.dart';
+import 'package:splittr/features/auth/presentation/pages/widgets/auth_form_card.dart';
+import 'package:splittr/features/auth/presentation/pages/widgets/google_sign_in_button.dart';
+import 'package:splittr/features/auth/presentation/pages/widgets/or_divider.dart';
+import 'package:splittr/utils/extensions/extensions.dart';
 
 part 'login_form.dart';
 
@@ -14,8 +19,9 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppTopBar(
-        title: appConfig.appName,
+        title: context.strings.appName,
         centerTitle: true,
+        titleColor: context.colorScheme.primary,
       ),
       body: const _LoginForm(),
     );

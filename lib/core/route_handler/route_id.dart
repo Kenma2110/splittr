@@ -2,7 +2,7 @@ enum RouteId {
   splash,
   dashboard,
   login,
-  signup,
+  signUp,
   profile,
   groupDashboard,
   quickSettle,

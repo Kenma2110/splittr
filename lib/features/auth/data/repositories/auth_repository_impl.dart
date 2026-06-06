@@ -31,12 +31,12 @@ final class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  FutureEitherFailure<User> signupWithEmail({
+  FutureEitherFailure<User> signUpWithEmail({
     required String email,
     required String password,
   }) async {
     try {
-      final userModel = await _authRemoteDataSource.signupWithEmail(
+      final userModel = await _authRemoteDataSource.signUpWithEmail(
         email: email,
         password: password,
       );

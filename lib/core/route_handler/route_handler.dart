@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:sky_utils/sky_utils.dart';
 import 'package:splittr/core/route_handler/route_id.dart';
 import 'package:splittr/features/auth/presentation/pages/login/login_page.dart';
+import 'package:splittr/features/auth/presentation/pages/sign_up/sign_up_page.dart';
 import 'package:splittr/features/dashboard/presentation/ui/dashboard_page.dart';
 import 'package:splittr/features/group_dashboard/presentation/ui/group_dashboard_page.dart';
 import 'package:splittr/features/profile/presentation/ui/profile_page.dart';
 import 'package:splittr/features/quick_settle/presentation/ui/quick_settle_page.dart';
 import 'package:splittr/features/quick_split/presentation/ui/quick_split_page.dart';
-import 'package:splittr/features/signup/presentation/ui/signup_page.dart';
 import 'package:splittr/features/splash/presentation/ui/splash_page.dart';
 
 export 'route_id.dart';
@@ -34,7 +34,7 @@ final class RouteHandler {
         RouteId.splash => SplashPage(args: args),
         RouteId.dashboard => DashboardPage(args: args),
         RouteId.login => LoginPage(args: args),
-        RouteId.signup => SignupPage(args: args),
+        RouteId.signUp => SignUpPage(args: args),
         RouteId.profile => ProfilePage(args: args),
         RouteId.groupDashboard => GroupDashboardPage(args: args),
         RouteId.quickSettle => QuickSettlePage(args: args),

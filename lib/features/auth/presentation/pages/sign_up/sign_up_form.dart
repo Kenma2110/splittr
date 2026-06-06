@@ -1,7 +1,7 @@
-part of 'login_page.dart';
+part of 'sign_up_page.dart';
 
-class _LoginForm extends StatelessWidget {
-  const _LoginForm();
+class _SignUpForm extends StatelessWidget {
+  const _SignUpForm();
 
   @override
   Widget build(BuildContext context) {
@@ -9,34 +9,38 @@ class _LoginForm extends StatelessWidget {
       crossAxisAlignment: .center,
       children: [
         AppText.titleLarge(
-          context.strings.welcomeBack,
+          context.strings.createAccount,
           color: context.colorScheme.onSurface,
         ),
         const SizedBox(height: AppSpacing.sm),
         AppText.bodyMedium(
-          context.strings.enterEmailToContinue,
+          context.strings.joinUs,
           color: context.colorScheme.onSurfaceVariant,
         ),
         const SizedBox(height: AppSpacing.xl),
         AuthFormCard(
           children: [
-            AppTextField(
-              labelText: context.strings.email,
-              hintText: context.strings.emailHintText,
+            NameTextField(
+              onChanged: (_) {},
             ),
-            AppTextField(
-              labelText: context.strings.password,
-              hintText: context.strings.passwordHintText,
-              obscureText: true,
+            EmailTextField(
+              onChanged: (_) {},
+            ),
+            PasswordTextField(
+              onChanged: (_) {},
+            ),
+            ConfirmPasswordTextField(
+              onChanged: (_) {},
+              password: '',
             ),
             AppButton.primary(
-              text: context.strings.login,
+              text: context.strings.signUp,
               onPressed: () {},
             ),
           ],
         ),
         const SizedBox(height: AppSpacing.md),
-        const _DoNotHaveAccountSection(),
+        const _AlreadyHaveAccountSection(),
         const SizedBox(height: AppSpacing.lg),
         const OrDivider(),
         const SizedBox(height: AppSpacing.lg),
@@ -53,27 +57,28 @@ class _LoginForm extends StatelessWidget {
   }
 }
 
-class _DoNotHaveAccountSection extends StatefulWidget {
-  const _DoNotHaveAccountSection();
+class _AlreadyHaveAccountSection extends StatefulWidget {
+  const _AlreadyHaveAccountSection();
 
   @override
-  State<_DoNotHaveAccountSection> createState() =>
-      _DoNotHaveAccountSectionState();
+  State<_AlreadyHaveAccountSection> createState() =>
+      _AlreadyHaveAccountSectionState();
 }
 
-class _DoNotHaveAccountSectionState extends State<_DoNotHaveAccountSection> {
-  late final GestureRecognizer _signUpTapRecognizer;
+class _AlreadyHaveAccountSectionState
+    extends State<_AlreadyHaveAccountSection> {
+  late final GestureRecognizer _signInTapRecognizer;
 
   @override
   void initState() {
     super.initState();
-    _signUpTapRecognizer = TapGestureRecognizer()
-      ..onTap = () => RouteHandler.push(context, RouteId.signUp);
+    _signInTapRecognizer = TapGestureRecognizer()
+      ..onTap = () => RouteHandler.pop(context);
   }
 
   @override
   void dispose() {
-    _signUpTapRecognizer.dispose();
+    _signInTapRecognizer.dispose();
     super.dispose();
   }
 
@@ -81,12 +86,12 @@ class _DoNotHaveAccountSectionState extends State<_DoNotHaveAccountSection> {
   Widget build(BuildContext context) {
     return AppRichText(
       spans: [
-        AppTextSpan.bodyMedium(context.strings.doNotHaveAccount),
-        const AppTextSpan.bodyMedium(' '),
+        AppTextSpan.bodyMedium(context.strings.alreadyHaveAccount),
+        const AppTextSpan(' '),
         AppTextSpan.labelLarge(
-          context.strings.signUpWithEmail,
+          context.strings.signIn,
           color: context.colorScheme.primary,
-          recognizer: _signUpTapRecognizer,
+          recognizer: _signInTapRecognizer,
         ),
       ],
     );

@@ -24,6 +24,9 @@ dependencies:
 
   flutter_bloc: ^9.1.1
 
+  flutter_localizations:
+    sdk: flutter
+
   fpdart: ^1.1.1
 
   freezed_annotation: ^3.1.0
@@ -40,10 +43,9 @@ dependencies:
 
   recase: 4.1.0
 
-  sky_architecture: ^1.2.0
+  sky_architecture: ^1.4.0
   sky_bloc: ^2.0.3
-  sky_design_system:
-    path: ../sky_core/packages/sky_design_system
+  sky_design_system: ^1.4.2
   sky_utils: ^1.0.2
 
   uuid: ^4.4.2
@@ -67,6 +69,7 @@ dev_dependencies:
       ref: sky_lints-v1.0.0
 
 flutter:
+  generate: true
   uses-material-design: true
 
   fonts:

@@ -40,7 +40,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
   @override
-  Future<UserModel> signupWithEmail({
+  Future<UserModel> signUpWithEmail({
     required String email,
     required String password,
   }) async {

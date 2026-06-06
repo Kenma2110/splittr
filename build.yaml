@@ -23,7 +23,7 @@ targets:
           - lib/features/profile/presentation/blocs/profile_bloc.dart
           - lib/features/quick_settle/presentation/blocs/quick_settle_bloc.dart
           - lib/features/quick_split/presentation/blocs/quick_split_bloc.dart
-          - lib/features/signup/presentation/blocs/signup_bloc.dart
+          - lib/features/signup/presentation/blocs/sign_up_bloc.dart
           - lib/features/splash/presentation/blocs/splash_bloc.dart
           - lib/features/*/domain/entities/*.dart
           - lib/features/*/presentation/blocs/*_bloc.dart
@@ -57,7 +57,7 @@ targets:
           - lib/features/profile/presentation/blocs/profile_bloc.dart
           - lib/features/quick_settle/presentation/blocs/quick_settle_bloc.dart
           - lib/features/quick_split/presentation/blocs/quick_split_bloc.dart
-          - lib/features/signup/presentation/blocs/signup_bloc.dart
+          - lib/features/signup/presentation/blocs/sign_up_bloc.dart
           - lib/features/splash/presentation/blocs/splash_bloc.dart
           - lib/features/*/presentation/blocs/*_bloc.dart
           - lib/features/*/presentation/blocs/*/*_bloc.dart
