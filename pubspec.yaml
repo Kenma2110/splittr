@@ -45,7 +45,7 @@ dependencies:
 
   sky_architecture: ^1.4.0
   sky_bloc: ^2.0.3
-  sky_design_system: ^1.4.2
+  sky_design_system: ^1.5.1
   sky_utils: ^1.0.2
 
   uuid: ^4.4.2

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,5 +43,20 @@ class SignUpPage extends BasePage<SignUpBloc, SignUpState> {
       ),
       body: const _SignUpForm(),
     );
+  }
+
+  @override
+  void handleStateChange(BuildContext context, SignUpState state) {
+    return switch (state) {
+      OnSignUpSuccess _ => _navigateToDashboard(context),
+      OnFailure _ => AppSnackBar.show(context, message: state.failure.message),
+      _ => () {},
+    };
+  }
+
+  void _navigateToDashboard(BuildContext context) {
+    AppSnackBar.show(context, message: context.strings.signUpSuccess);
+
+    unawaited(RouteHandler.pushAndRemoveUntil(context, RouteId.dashboard));
   }
 }

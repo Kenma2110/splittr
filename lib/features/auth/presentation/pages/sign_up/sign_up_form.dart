@@ -53,7 +53,9 @@ class _SignUpForm extends StatelessWidget {
               builder: (context, isValid) {
                 return AppButton.primary(
                   text: context.strings.signUp,
-                  onPressed: isValid ? () {} : null,
+                  onPressed: isValid
+                      ? () => getBloc<SignUpBloc>(context).signUpClicked()
+                      : null,
                 );
               },
             ),
