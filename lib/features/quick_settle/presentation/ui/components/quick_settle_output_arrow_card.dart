@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:splittr/core/designs/color/app_colors.dart';
 
 class QuickSettleOutputArrowCard extends StatelessWidget {
-  final String sender;
-  final String receiver;
-  final String amount;
   const QuickSettleOutputArrowCard({
-    super.key,
     required this.sender,
     required this.receiver,
     required this.amount,
+    super.key,
   });
+  final String sender;
+  final String receiver;
+  final String amount;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +17,7 @@ class QuickSettleOutputArrowCard extends StatelessWidget {
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: AppColors.greyColor,
+        // color: AppColors.greyColor,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(

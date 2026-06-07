@@ -46,13 +46,14 @@ sealed class QuickSplitState extends BaseState with _$QuickSplitState {
   }) = QuickSettle;
 
   @override
-  BaseState getFailureState(Failure failure) => QuickSplitState.onFailure(
-    store: store.copyWith(loading: false),
-    failure: failure,
-  );
+  BaseState getFailureState({required Failure failure}) =>
+      QuickSplitState.onFailure(
+        store: store.copyWith(loading: false),
+        failure: failure,
+      );
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
+  BaseState getLoadingState({required bool loading}) =>
       QuickSplitState.changeLoaderState(
         store: store.copyWith(loading: loading),
       );

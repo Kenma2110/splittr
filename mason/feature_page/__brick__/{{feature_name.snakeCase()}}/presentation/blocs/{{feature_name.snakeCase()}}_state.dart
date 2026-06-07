@@ -29,7 +29,7 @@ sealed class {{feature_name.pascalCase()}}State extends BaseState with _${{featu
       );
 
   @override
-  BaseState getLoaderState({
+  BaseState getLoadingState({
     required bool loading,
   }) =>
       {{feature_name.pascalCase()}}State.changeLoaderState(

@@ -1,13 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:splittr/core/base/base_bloc/base_bloc.dart';
-import 'package:splittr/core/failure/failure.dart';
+import 'package:sky_architecture/sky_architecture.dart';
+import 'package:sky_bloc/sky_bloc.dart';
 
 part 'group_dashboard_bloc.freezed.dart';
-
 part 'group_dashboard_event.dart';
-
 part 'group_dashboard_state.dart';
 
 @injectable
@@ -29,7 +27,4 @@ final class GroupDashboardBloc
   void started({Map<String, dynamic>? args}) {
     add(const GroupDashboardEvent.started());
   }
-
-  @override
-  bool get isLoading => state.store.loading;
 }

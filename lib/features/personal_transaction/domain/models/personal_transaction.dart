@@ -16,6 +16,19 @@ class PersonalTransaction with _$PersonalTransaction {
     this.updatedAt,
   });
 
+  factory PersonalTransaction.fromDto(PersonalTransactionDto dto) {
+    return PersonalTransaction(
+      transactionId: dto.transactionId,
+      userId: dto.userId,
+      title: dto.title,
+      amount: dto.amount,
+      note: dto.note,
+      category: dto.category,
+      createdAt: dto.createdAt,
+      updatedAt: dto.updatedAt,
+    );
+  }
+
   @override
   final double? amount;
 
@@ -39,19 +52,6 @@ class PersonalTransaction with _$PersonalTransaction {
 
   @override
   final String? userId;
-
-  factory PersonalTransaction.fromDto(PersonalTransactionDto dto) {
-    return PersonalTransaction(
-      transactionId: dto.transactionId,
-      userId: dto.userId,
-      title: dto.title,
-      amount: dto.amount,
-      note: dto.note,
-      category: dto.category,
-      createdAt: dto.createdAt,
-      updatedAt: dto.updatedAt,
-    );
-  }
 
   PersonalTransactionDto toDto() {
     return PersonalTransactionDto(

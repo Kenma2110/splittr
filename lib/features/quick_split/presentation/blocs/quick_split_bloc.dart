@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:splittr/core/base/base_bloc/base_bloc.dart';
-import 'package:splittr/core/failure/failure.dart';
+import 'package:sky_architecture/sky_architecture.dart';
+import 'package:sky_bloc/sky_bloc.dart';
 
 part 'quick_split_bloc.freezed.dart';
 part 'quick_split_event.dart';
@@ -83,7 +83,7 @@ final class QuickSplitBloc extends BaseBloc<QuickSplitEvent, QuickSplitState> {
     _QuickSettleClicked event,
     Emitter<QuickSplitState> emit,
   ) {
-    changeLoaderState(emit: emit, loading: true);
+    changeLoadingState(emit: emit, loading: true);
     for (final peopleRecord in state.store.peopleRecords) {
       final amount = double.tryParse(peopleRecord.amount);
       if (amount == null || amount < 0) {
@@ -149,7 +149,4 @@ final class QuickSplitBloc extends BaseBloc<QuickSplitEvent, QuickSplitState> {
   void started({Map<String, dynamic>? args}) {
     add(const QuickSplitEvent.started());
   }
-
-  @override
-  bool get isLoading => state.store.loading;
 }

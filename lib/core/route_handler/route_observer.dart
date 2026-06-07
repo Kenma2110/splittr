@@ -31,7 +31,7 @@ class CustomNavigatorObserver extends NavigatorObserver {
   }
 
   @override
-  void didReplace({Route? newRoute, Route<dynamic>? oldRoute}) {
+  void didReplace({Route<dynamic>? newRoute, Route<dynamic>? oldRoute}) {
     if (kDebugMode) {
       print(
         '''========== didReplace from ${oldRoute.toJson()} to ${newRoute.toJson()}''',

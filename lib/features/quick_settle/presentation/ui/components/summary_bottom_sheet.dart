@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:splittr/core/designs/color/app_colors.dart';
 
 class SummaryBottomSheet extends StatelessWidget {
+  const SummaryBottomSheet({required this.summaryMap, super.key});
   final Map<String, List<Map<String, double>>> summaryMap;
-
-  const SummaryBottomSheet({super.key, required this.summaryMap});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColors.blueBgColor,
+        // color: AppColors.blueBgColor,
         borderRadius: BorderRadius.circular(20),
       ),
       padding: const EdgeInsets.all(16),
@@ -24,7 +22,7 @@ class SummaryBottomSheet extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
-                color: AppColors.whiteColor,
+                // color: AppColors.whiteColor,
               ),
             ),
           ),
@@ -33,12 +31,11 @@ class SummaryBottomSheet extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: summaryMap.entries.map<Widget>((entry) {
-                  final String receiver = entry.key;
-                  final List<Map<String, double>> givers =
-                      List<Map<String, double>>.from(entry.value);
+                  final receiver = entry.key;
+                  final givers = List<Map<String, double>>.from(entry.value);
 
                   return Card(
-                    color: AppColors.greyColor,
+                    // color: AppColors.greyColor,
                     margin: const EdgeInsets.symmetric(
                       vertical: 8,
                       horizontal: 16,
@@ -64,8 +61,8 @@ class SummaryBottomSheet extends StatelessWidget {
                           const SizedBox(height: 10),
                           Column(
                             children: givers.map<Widget>((giverMap) {
-                              final String giver = giverMap.keys.first;
-                              final double amount = giverMap.values.first;
+                              final giver = giverMap.keys.first;
+                              final amount = giverMap.values.first;
 
                               return Padding(
                                 padding: const EdgeInsets.symmetric(

@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:splittr/core/base/base_page/base_page.dart';
+import 'package:sky_bloc/sky_bloc.dart';
+import 'package:splittr/di/injection.dart';
 import 'package:splittr/features/group_dashboard/presentation/blocs/group_dashboard_bloc.dart';
 
 part 'group_dashboard_form.dart';
 
-class GroupDashboardPage extends BasePage<GroupDashboardBloc> {
-  const GroupDashboardPage({super.key, required super.args});
+class GroupDashboardPage
+    extends BasePage<GroupDashboardBloc, GroupDashboardState> {
+  const GroupDashboardPage({required this.args, super.key});
+
+  final Map<String, dynamic>? args;
 
   @override
-  Widget buildScreen(BuildContext context) {
-    return Scaffold(
-      body: BlocConsumer<GroupDashboardBloc, GroupDashboardState>(
-        listener: _handleState,
-        builder: _handleWidget,
-      ),
-    );
-  }
+  GroupDashboardBloc createBloc() =>
+      getIt<GroupDashboardBloc>()..started(args: args);
 
-  void _handleState(BuildContext context, GroupDashboardState state) {}
-
-  Widget _handleWidget(BuildContext context, GroupDashboardState state) {
-    return const _GroupDashboardForm();
+  @override
+  Widget buildPage(BuildContext context) {
+    return const Scaffold(body: _GroupDashboardForm());
   }
 }

@@ -1,13 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
-import 'package:splittr/core/base/base_bloc/base_bloc.dart';
-import 'package:splittr/core/failure/failure.dart';
+import 'package:sky_architecture/sky_architecture.dart';
+import 'package:sky_bloc/sky_bloc.dart';
 
 part 'dashboard_bloc.freezed.dart';
-
 part 'dashboard_event.dart';
-
 part 'dashboard_state.dart';
 
 @injectable
@@ -26,7 +24,4 @@ final class DashboardBloc extends BaseBloc<DashboardEvent, DashboardState> {
   void started({Map<String, dynamic>? args}) {
     add(const DashboardEvent.started());
   }
-
-  @override
-  bool get isLoading => state.store.loading;
 }

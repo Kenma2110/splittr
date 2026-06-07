@@ -2,11 +2,9 @@ enum RouteId {
   splash,
   dashboard,
   login,
-  authLanding,
-  signup,
+  signUp,
   profile,
   groupDashboard,
   quickSettle,
   quickSplit,
-  otpVerification,
 }

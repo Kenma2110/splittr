@@ -17,13 +17,14 @@ sealed class ProfileState extends BaseState with _$ProfileState {
   }) = OnFailure;
 
   @override
-  BaseState getFailureState(Failure failure) => ProfileState.onFailure(
-    store: store.copyWith(loading: false),
-    failure: failure,
-  );
+  BaseState getFailureState({required Failure failure}) =>
+      ProfileState.onFailure(
+        store: store.copyWith(loading: false),
+        failure: failure,
+      );
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
+  BaseState getLoadingState({required bool loading}) =>
       ProfileState.changeLoaderState(store: store.copyWith(loading: loading));
 }
 

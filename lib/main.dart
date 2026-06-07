@@ -1,12 +1,14 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sky_design_system/sky_design_system.dart' show AppTheme;
 import 'package:splittr/constants/env/env.dart';
 import 'package:splittr/core/app_config/i_app_config.dart';
-import 'package:splittr/core/designs/theme/app_theme.dart';
-import 'package:splittr/core/global/presentation/ui/global_blocs_widget.dart';
 import 'package:splittr/core/route_handler/route_handler.dart';
 import 'package:splittr/core/route_handler/route_observer.dart';
 import 'package:splittr/di/injection.dart';
+import 'package:splittr/features/auth/presentation/blocs/auth_bloc.dart';
+import 'package:splittr/l10n/generated/app_localizations.dart';
 
 Future<void> mainCommon(Env env) async {
   appConfig = IAppConfig.init(env);
@@ -25,15 +27,35 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GlobalBlocsWidget(
+    return _GlobalBlocsWidget(
       child: MaterialApp(
         title: appConfig.appName,
         debugShowCheckedModeBanner: false,
         initialRoute: RouteId.splash.name,
         onGenerateRoute: RouteHandler.generateRoute,
-        theme: AppTheme.theme,
+        themeMode: ThemeMode.dark,
+        theme: AppTheme.light(),
+        darkTheme: AppTheme.dark(),
         navigatorObservers: [CustomNavigatorObserver()],
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
       ),
+    );
+  }
+}
+
+class _GlobalBlocsWidget extends StatelessWidget {
+  const _GlobalBlocsWidget({required this.child});
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => getIt<AuthBloc>()),
+      ],
+      child: child,
     );
   }
 }

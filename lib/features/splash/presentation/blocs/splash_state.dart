@@ -7,18 +7,21 @@ sealed class SplashState extends BaseState with _$SplashState {
   const factory SplashState.initial({required SplashStateStore store}) =
       Initial;
 
-  const factory SplashState.userAuthorized({
+  const factory SplashState.onCheckAuthStatus({
     required SplashStateStore store,
-    required User user,
-  }) = UserAuthorized;
+  }) = OnCheckAuthStatus;
 
-  const factory SplashState.userUnauthorized({
+  const factory SplashState.onUserAuthorize({
     required SplashStateStore store,
-  }) = UserUnauthorized;
+  }) = OnUserAuthorize;
 
-  const factory SplashState.changeLoaderState({
+  const factory SplashState.onUserUnauthorize({
     required SplashStateStore store,
-  }) = ChangeLoaderState;
+  }) = OnUserUnauthorize;
+
+  const factory SplashState.onLoadingStateChange({
+    required SplashStateStore store,
+  }) = OnLoadingStateChange;
 
   const factory SplashState.onFailure({
     required SplashStateStore store,
@@ -26,14 +29,15 @@ sealed class SplashState extends BaseState with _$SplashState {
   }) = OnFailure;
 
   @override
-  BaseState getFailureState(Failure failure) => SplashState.onFailure(
-    store: store.copyWith(loading: false),
-    failure: failure,
-  );
+  BaseState getLoadingState({required bool loading}) =>
+      SplashState.onLoadingStateChange(store: store.copyWith(loading: loading));
 
   @override
-  BaseState getLoaderState({required bool loading}) =>
-      SplashState.changeLoaderState(store: store.copyWith(loading: loading));
+  BaseState getFailureState({required Failure failure}) =>
+      SplashState.onFailure(
+        store: store.copyWith(loading: false),
+        failure: failure,
+      );
 }
 
 @freezed

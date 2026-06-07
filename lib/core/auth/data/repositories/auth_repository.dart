@@ -1,15 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sky_architecture/sky_architecture.dart';
 import 'package:splittr/core/auth/domain/repositories/i_auth_repository.dart';
-import 'package:splittr/core/failure/failure.dart';
 import 'package:splittr/utils/typedefs/typedefs.dart';
 
 @Singleton(as: IAuthRepository)
 final class AuthRepository implements IAuthRepository {
-  final FirebaseAuth _firebaseAuth;
-
   const AuthRepository(this._firebaseAuth);
+  final FirebaseAuth _firebaseAuth;
 
   @override
   bool get isUserSignedIn => _firebaseAuth.currentUser != null;
@@ -35,7 +34,7 @@ final class AuthRepository implements IAuthRepository {
         codeAutoRetrievalTimeout: (_) {},
         forceResendingToken: forceResendingToken,
       );
-    } catch (_) {}
+    } on Exception catch (_) {}
   }
 
   @override
@@ -54,16 +53,20 @@ final class AuthRepository implements IAuthRepository {
       return switch (e.message) {
         // TODO(Saurabh): Add proper message
         'account-exists-with-different-credential' => left(
-          const Failure(message: 'Failed'),
+          const ServerFailure(message: 'Failed'),
         ),
-        'invalid-credential' => left(const Failure(message: 'Failed')),
-        'operation-not-allowed' => left(const Failure(message: 'Failed')),
-        'user-disabled' => left(const Failure(message: 'Failed')),
-        'user-not-found' => left(const Failure(message: 'Failed')),
-        'wrong-password' => left(const Failure(message: 'Failed')),
-        'invalid-verification-code' => left(const Failure(message: 'Failed')),
-        'invalid-verification-id' => left(const Failure(message: 'Failed')),
-        _ => left(const Failure(message: 'Failed')),
+        'invalid-credential' => left(const ServerFailure(message: 'Failed')),
+        'operation-not-allowed' => left(const ServerFailure(message: 'Failed')),
+        'user-disabled' => left(const ServerFailure(message: 'Failed')),
+        'user-not-found' => left(const ServerFailure(message: 'Failed')),
+        'wrong-password' => left(const ServerFailure(message: 'Failed')),
+        'invalid-verification-code' => left(
+          const ServerFailure(message: 'Failed'),
+        ),
+        'invalid-verification-id' => left(
+          const ServerFailure(message: 'Failed'),
+        ),
+        _ => left(const ServerFailure(message: 'Failed')),
       };
     }
   }
