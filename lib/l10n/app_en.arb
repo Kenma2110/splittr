@@ -20,5 +20,6 @@
   "fullNameHintText": "John Doe",
   "signUp": "Sign Up",
   "alreadyHaveAccount": "Already have an account?",
-  "signIn": "Sign In"
+  "signIn": "Sign In",
+  "signUpSuccess": "Sign Up Successful"
 }

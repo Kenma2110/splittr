@@ -26,7 +26,7 @@ sealed class SignUpState extends BaseState with _$SignUpState {
 
   const factory SignUpState.onSignUpSuccess({
     required SignUpStateStore store,
-  }) = onSignUpSuccess;
+  }) = OnSignUpSuccess;
 
   const factory SignUpState.onLoadingStateChange({
     required SignUpStateStore store,
