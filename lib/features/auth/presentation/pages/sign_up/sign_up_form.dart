@@ -21,21 +21,41 @@ class _SignUpForm extends StatelessWidget {
         AuthFormCard(
           children: [
             NameTextField(
-              onChanged: (_) {},
+              onChanged: (name) =>
+                  getBloc<SignUpBloc>(context).nameChanged(name: name),
             ),
             EmailTextField(
-              onChanged: (_) {},
+              onChanged: (email) =>
+                  getBloc<SignUpBloc>(context).emailChanged(email: email),
             ),
             PasswordTextField(
-              onChanged: (_) {},
+              onChanged: (password) => getBloc<SignUpBloc>(
+                context,
+              ).passwordChanged(password: password),
             ),
-            ConfirmPasswordTextField(
-              onChanged: (_) {},
-              password: '',
+            BlocSelector<SignUpBloc, SignUpState, Password?>(
+              selector: (state) => state.store.password,
+              builder: (context, password) {
+                return ConfirmPasswordTextField(
+                  onChanged: (confirmPassword) => getBloc<SignUpBloc>(
+                    context,
+                  ).confirmPasswordChanged(confirmPassword: confirmPassword),
+                  password: password,
+                );
+              },
             ),
-            AppButton.primary(
-              text: context.strings.signUp,
-              onPressed: () {},
+            BlocSelector<SignUpBloc, SignUpState, bool>(
+              selector: (state) =>
+                  (state.store.name?.isValid() ?? false) &&
+                  (state.store.emailAddress?.isValid() ?? false) &&
+                  (state.store.password?.isValid() ?? false) &&
+                  (state.store.confirmPassword?.isValid() ?? false),
+              builder: (context, isValid) {
+                return AppButton.primary(
+                  text: context.strings.signUp,
+                  onPressed: isValid ? () {} : null,
+                );
+              },
             ),
           ],
         ),

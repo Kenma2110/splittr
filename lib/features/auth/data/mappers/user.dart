@@ -6,7 +6,7 @@ extension UserModelX on UserModel {
   User toDomain() => User(id: id, name: name, email: email, phone: phone);
 }
 
-extension FirebaseUserX on firebase_auth.User {
+extension UserX on User {
   UserModel toData() =>
-      UserModel(id: uid, name: displayName, email: email, phone: phoneNumber);
+      UserModel(id: id, name: name, email: email, phone: phone);
 }

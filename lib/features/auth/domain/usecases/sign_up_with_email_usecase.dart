@@ -6,26 +6,29 @@ import 'package:splittr/features/auth/domain/repositories/auth_repository.dart';
 
 @lazySingleton
 final class SignUpWithEmailUseCase
-    implements UseCase<User, SignupWithEmailParams> {
+    implements UseCase<User, SignUpWithEmailParams> {
   const SignUpWithEmailUseCase(this._authRepository);
 
   final AuthRepository _authRepository;
 
   @override
-  Future<Either<Failure, User>> call(SignupWithEmailParams params) {
+  Future<Either<Failure, User>> call(SignUpWithEmailParams params) {
     return _authRepository.signUpWithEmail(
       email: params.email,
       password: params.password,
+      name: params.name,
     );
   }
 }
 
-class SignupWithEmailParams {
-  const SignupWithEmailParams({
+class SignUpWithEmailParams {
+  const SignUpWithEmailParams({
+    required this.name,
     required this.email,
     required this.password,
   });
 
+  final String name;
   final String email;
   final String password;
 }

@@ -8,6 +8,26 @@ sealed class SignUpState extends BaseState with _$SignUpState {
     required SignUpStateStore store,
   }) = Initial;
 
+  const factory SignUpState.onNameChange({
+    required SignUpStateStore store,
+  }) = OnNameChange;
+
+  const factory SignUpState.onEmailChange({
+    required SignUpStateStore store,
+  }) = OnEmailChange;
+
+  const factory SignUpState.onPasswordChange({
+    required SignUpStateStore store,
+  }) = OnPasswordChange;
+
+  const factory SignUpState.onConfirmPasswordChange({
+    required SignUpStateStore store,
+  }) = OnConfirmPasswordChange;
+
+  const factory SignUpState.onSignUpSuccess({
+    required SignUpStateStore store,
+  }) = onSignUpSuccess;
+
   const factory SignUpState.onLoadingStateChange({
     required SignUpStateStore store,
   }) = OnLoadingStateChange;
@@ -37,8 +57,20 @@ sealed class SignUpState extends BaseState with _$SignUpState {
 class SignUpStateStore with _$SignUpStateStore {
   const SignUpStateStore({
     this.loading = false,
+    this.name,
+    this.emailAddress,
+    this.password,
+    this.confirmPassword,
   });
 
   @override
   final bool loading;
+  @override
+  final Name? name;
+  @override
+  final EmailAddress? emailAddress;
+  @override
+  final Password? password;
+  @override
+  final Password? confirmPassword;
 }

@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sky_architecture/sky_architecture.dart';
 import 'package:splittr/features/auth/data/datasources/auth_remote_data_source.dart';
-import 'package:splittr/features/auth/data/mappers/user.dart';
 import 'package:splittr/features/auth/data/models/user_model.dart';
 import 'package:splittr/utils/extensions/firebase_extensions.dart';
 
@@ -28,7 +27,23 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final firebaseUser = userCredential.user;
 
       if (firebaseUser != null) {
-        return firebaseUser.toData();
+        final userModelDoc = await _firebaseFirestore
+            .collection('users')
+            .doc(firebaseUser.uid)
+            .get();
+
+        if (!userModelDoc.exists) {
+          throw const ServerException(
+            message: 'Authentication failed: User object is null.',
+          );
+        }
+        final userModelJson = userModelDoc.data();
+        if (userModelJson == null) {
+          throw const ServerException(
+            message: 'Authentication failed: User object is null.',
+          );
+        }
+        return UserModel.fromJson(userModelJson);
       } else {
         throw const ServerException(
           message: 'Authentication failed: User object is null.',
@@ -43,6 +58,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<UserModel> signUpWithEmail({
     required String email,
     required String password,
+    required String name,
   }) async {
     try {
       final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
@@ -53,7 +69,11 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
       final firebaseUser = userCredential.user;
 
       if (firebaseUser != null) {
-        final userModel = firebaseUser.toData();
+        final userModel = UserModel(
+          id: firebaseUser.uid,
+          name: name,
+          email: email,
+        );
         await _firebaseFirestore
             .collection('users')
             .doc(userModel.id)
@@ -64,7 +84,7 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
               }),
             );
 
-        return firebaseUser.toData();
+        return userModel;
       } else {
         throw const ServerException(
           message: 'Authentication failed: User object is null.',

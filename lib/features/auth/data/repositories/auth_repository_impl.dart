@@ -34,11 +34,13 @@ final class AuthRepositoryImpl implements AuthRepository {
   FutureEitherFailure<User> signUpWithEmail({
     required String email,
     required String password,
+    required String name,
   }) async {
     try {
       final userModel = await _authRemoteDataSource.signUpWithEmail(
         email: email,
         password: password,
+        name: name,
       );
       return Right(userModel.toDomain());
     } on Exception catch (e) {

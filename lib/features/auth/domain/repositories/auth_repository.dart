@@ -11,6 +11,7 @@ abstract interface class AuthRepository {
   FutureEitherFailure<User> signUpWithEmail({
     required String email,
     required String password,
+    required String name,
   });
 
   FutureEitherFailure<User> checkAuthStatus();
