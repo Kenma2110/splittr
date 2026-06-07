@@ -62,11 +62,7 @@ dev_dependencies:
 
   json_serializable: ^6.8.0
 
-  sky_lints:
-    git:
-      url: git@github.com:Saurrabhh/sky_core.git
-      path: packages/sky_lints
-      ref: sky_lints-v1.0.0
+  sky_lints: ^1.0.2
 
 flutter:
   generate: true

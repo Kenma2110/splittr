@@ -893,12 +893,11 @@ packages:
   sky_lints:
     dependency: "direct dev"
     description:
-      path: "packages/sky_lints"
-      ref: "sky_lints-v1.0.0"
-      resolved-ref: "63eb0da51b7c822860cc2a63c4b6b47ed865410c"
-      url: "git@github.com:Saurrabhh/sky_core.git"
-    source: git
-    version: "1.0.0"
+      name: sky_lints
+      sha256: "8623c4d4cb81455d637c9b9dd8f986f2276dfe83392b127e9b163567d1211b1c"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.2"
   sky_telemetry:
     dependency: transitive
     description:
