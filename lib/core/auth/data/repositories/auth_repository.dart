@@ -3,7 +3,8 @@ import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sky_architecture/sky_architecture.dart';
 import 'package:splittr/core/auth/domain/repositories/i_auth_repository.dart';
-import 'package:splittr/utils/typedefs/typedefs.dart';
+import 'package:splittr/utils/typedefs/typedefs.dart'
+    hide FutureEitherFailureUnit;
 
 @Singleton(as: IAuthRepository)
 final class AuthRepository implements IAuthRepository {

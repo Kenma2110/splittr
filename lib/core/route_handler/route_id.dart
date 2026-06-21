@@ -7,4 +7,5 @@ enum RouteId {
   groupDashboard,
   quickSettle,
   quickSplit,
+  splitHistory,
 }

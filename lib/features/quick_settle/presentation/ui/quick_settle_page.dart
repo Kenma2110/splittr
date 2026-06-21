@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sky_bloc/sky_bloc.dart';
+import 'package:sky_design_system/sky_design_system.dart';
+import 'package:splittr/core/route_handler/route_handler.dart';
 import 'package:splittr/di/injection.dart';
 import 'package:splittr/features/quick_settle/presentation/blocs/quick_settle_bloc.dart';
 import 'package:splittr/features/quick_settle/presentation/ui/components/quick_settle_output_arrow_card.dart';
@@ -46,6 +48,28 @@ class QuickSettlePage extends BasePage<QuickSettleBloc, QuickSettleState> {
         ),
       ),
       body: const _QuickSettleForm(),
+    );
+  }
+
+  @override
+  void handleStateChange(BuildContext context, QuickSettleState state) {
+    return switch (state) {
+      SaveSuccess _ => _onSaveSuccess(context),
+      OnFailure(:final failure) => AppSnackBar.show(
+          context,
+          message: failure.message,
+        ),
+      _ => () {},
+    };
+  }
+
+  void _onSaveSuccess(BuildContext context) {
+    AppSnackBar.show(context, message: 'Split saved successfully!');
+    unawaited(
+      RouteHandler.pushAndRemoveUntil(
+        context,
+        RouteId.splitHistory,
+      ),
     );
   }
 }

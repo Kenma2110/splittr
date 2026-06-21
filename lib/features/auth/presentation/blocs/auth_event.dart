@@ -9,4 +9,8 @@ class AuthEvent extends BaseEvent with _$AuthEvent {
   const factory AuthEvent.authStatusChecked() = _AuthStatusChecked;
 
   const factory AuthEvent.loggedOut() = _LoggedOut;
+
+  const factory AuthEvent.loginAsGuest() = _LoginAsGuest;
+
+  const factory AuthEvent.logout() = _Logout;
 }

@@ -26,12 +26,15 @@ class SplashPage extends BasePage<SplashBloc, SplashState> {
     return BlocListener<AuthBloc, AuthState>(
       listener: (context, state) {
         return switch (state) {
-          OnUserAuthenticated _ => getBloc<SplashBloc>(
-            context,
-          ).userAuthorized(),
+          Guest _ => unawaited(
+              RouteHandler.pushReplacement(context, RouteId.splitHistory),
+            ),
+          Authenticated _ => getBloc<SplashBloc>(
+              context,
+            ).userAuthorized(),
           OnUserUnauthenticated _ => getBloc<SplashBloc>(
-            context,
-          ).userUnauthorized(),
+              context,
+            ).userUnauthorized(),
           _ => () {},
         };
       },

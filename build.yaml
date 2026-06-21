@@ -37,6 +37,7 @@ targets:
           - lib/features/*/data/models/*.dart
           - lib/core/user/data/dtos/user_dto.dart
           - lib/features/personal_transaction/data/dtos/personal_transaction_dto.dart
+          - lib/features/*/domain/entities/*.dart
 
       injectable_generator:injectable_builder:
         generate_for:

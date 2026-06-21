@@ -6,9 +6,12 @@ class QuickSettleEvent extends BaseEvent with _$QuickSettleEvent {
 
   const factory QuickSettleEvent.started({
     required List<({double amount, String name})> peopleRecord,
+    required String splitTitle,
   }) = _Started;
   const factory QuickSettleEvent.calculateTransactions() =
       _CalculateTransactions;
 
   const factory QuickSettleEvent.toggleListView() = _ToggleListView;
+
+  const factory QuickSettleEvent.saveSplit() = _SaveSplit;
 }

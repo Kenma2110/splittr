@@ -225,6 +225,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign Up Successful'**
   String get signUpSuccess;
+
+  /// No description provided for @guestLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Login as guest'**
+  String get guestLogin;
 }
 
 class _AppLocalizationsDelegate

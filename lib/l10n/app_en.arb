@@ -21,5 +21,6 @@
   "signUp": "Sign Up",
   "alreadyHaveAccount": "Already have an account?",
   "signIn": "Sign In",
-  "signUpSuccess": "Sign Up Successful"
+  "signUpSuccess": "Sign Up Successful",
+  "guestLogin":"Login as guest"
 }

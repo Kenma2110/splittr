@@ -48,6 +48,13 @@ class _LoginForm extends StatelessWidget {
             AppleSignInButton(onPressed: () {}),
           ],
         ),
+        AppButton.outlined(
+          text: context.strings.guestLogin,
+          icon: Icons.person,
+          onPressed: () {
+            context.read<AuthBloc>().loginAsGuest();
+          },
+        ),
       ],
     );
   }

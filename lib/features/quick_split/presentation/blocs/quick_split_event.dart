@@ -24,4 +24,14 @@ class QuickSplitEvent extends BaseEvent with _$QuickSplitEvent {
   const factory QuickSplitEvent.quickSettleClicked() = _QuickSettleClicked;
 
   const factory QuickSplitEvent.clearData() = _ClearData;
+
+  const factory QuickSplitEvent.calculateSplit() = _CalculateSplit;
+
+  const factory QuickSplitEvent.saveCurrentSplit() = _SaveCurrentSplit;
+
+  const factory QuickSplitEvent.loadHistory() = _LoadHistory;
+
+  const factory QuickSplitEvent.splitTitleChanged({
+    required String splitTitle,
+  }) = _SplitTitleChanged;
 }

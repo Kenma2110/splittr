@@ -3,6 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sky_architecture/sky_architecture.dart';
 import 'package:sky_bloc/sky_bloc.dart';
+import 'package:splittr/features/quick_split/domain/entities/split_history.dart';
+
+import 'package:splittr/features/quick_split/domain/repositories/i_quick_split_repository.dart';
 
 part 'quick_split_bloc.freezed.dart';
 part 'quick_split_event.dart';
@@ -10,8 +13,10 @@ part 'quick_split_state.dart';
 
 @injectable
 final class QuickSplitBloc extends BaseBloc<QuickSplitEvent, QuickSplitState> {
-  QuickSplitBloc()
+  QuickSplitBloc(this._repository)
     : super(const QuickSplitState.initial(store: QuickSplitStateStore()));
+
+  final IQuickSplitRepository _repository;
 
   @override
   void handleEvents() {
@@ -22,9 +27,51 @@ final class QuickSplitBloc extends BaseBloc<QuickSplitEvent, QuickSplitState> {
     on<_AmountChanged>(_onAmountChanged);
     on<_QuickSettleClicked>(_onQuickSettleClicked);
     on<_ClearData>(_onClearData);
+    on<_LoadHistory>(_onLoadHistory);
+    on<_SplitTitleChanged>(_onSplitTitleChanged);
   }
 
-  void _onStarted(_Started event, Emitter<QuickSplitState> emit) {}
+  void _onStarted(_Started event, Emitter<QuickSplitState> emit) {
+    add(const QuickSplitEvent.loadHistory());
+  }
+
+  void _onSplitTitleChanged(
+    _SplitTitleChanged event,
+    Emitter<QuickSplitState> emit,
+  ) {
+    emit(
+      QuickSplitState.splitTitleChange(
+        store: state.store.copyWith(splitTitle: event.splitTitle),
+      ),
+    );
+  }
+
+  Future<void> _onLoadHistory(
+    _LoadHistory event,
+    Emitter<QuickSplitState> emit,
+  ) async {
+    emit(
+      QuickSplitState.changeLoaderState(
+        store: state.store.copyWith(loading: true),
+      ),
+    );
+    try {
+      final history = await _repository.getSplitHistory();
+      emit(
+        QuickSplitState.loaded(
+          store: state.store.copyWith(loading: false),
+          history: history,
+        ),
+      );
+    } on Exception catch (e) {
+      emit(
+        QuickSplitState.onFailure(
+          store: state.store.copyWith(loading: false),
+          failure: ServerFailure(message: e.toString()),
+        ),
+      );
+    }
+  }
 
   void _onAddPerson(_AddPerson event, Emitter<QuickSplitState> emit) {
     final updatedPeople = List<({String amount, String name})>.from(

@@ -11,7 +11,7 @@ class GoogleSignInButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppButton.outlined(
       text: context.strings.google,
-      icon: Icons.account_circle,
+      icon: Icons.email,
       onPressed: onPressed,
     );
   }

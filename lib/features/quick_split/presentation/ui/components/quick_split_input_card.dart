@@ -19,7 +19,7 @@ class QuickSplitInputCard extends StatelessWidget {
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        // color: AppColors.greyColor,
+        color: Colors.grey.shade700,
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
@@ -56,7 +56,7 @@ class QuickSplitInputCard extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 8),
-          IconButton(onPressed: onDelete, icon: const Icon(Icons.delete)),
+          AppIconButton.secondary(icon: Icons.delete, onPressed: onDelete),
         ],
       ),
     );

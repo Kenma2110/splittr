@@ -453,6 +453,30 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  hive_ce:
+    dependency: "direct main"
+    description:
+      name: hive_ce
+      sha256: "8e9980e68643afb1e765d3af32b47996552a64e190d03faf622cea07c1294418"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.19.3"
+  hive_ce_flutter:
+    dependency: transitive
+    description:
+      name: hive_ce_flutter
+      sha256: "2677e95a333ff15af43ccd06af7eb7abbf1a4f154ea071997f3de4346cae913a"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.4"
+  hive_ce_generator:
+    dependency: "direct main"
+    description:
+      name: hive_ce_generator
+      sha256: c9a7cda57823ffec35846c051637ddcd105eafa253e7395d9c8c0ed5e87fbb72
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.11.1"
   hooks:
     dependency: transitive
     description:
@@ -525,6 +549,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.5"
+  isolate_channel:
+    dependency: transitive
+    description:
+      name: isolate_channel
+      sha256: a9d3d620695bc984244dafae00b95e4319d6974b2d77f4b9e1eb4f2efe099094
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.6.1"
   jni:
     dependency: transitive
     description:
@@ -865,26 +897,26 @@ packages:
     dependency: "direct main"
     description:
       name: sky_architecture
-      sha256: b269825319b7a2d70e53f619891688f0bb1ebc08114e397a6827c8ffb38f437a
+      sha256: "96aeb470813f4a45798de71559e0e5e2ca770e3852518352e8ff62945ae17b3b"
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.0"
+    version: "1.6.0"
   sky_bloc:
     dependency: "direct main"
     description:
       name: sky_bloc
-      sha256: a8c298968dbe1ab33826a0a87547fae402369e58234d67c4b00cfd7eb528785d
+      sha256: dc4bc9af91e41e037d255c48183455282187f1022f65803235fe65f6354d88de
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.7"
+    version: "2.0.8"
   sky_design_system:
     dependency: "direct main"
     description:
       name: sky_design_system
-      sha256: "146f033ee2dae3df75fd86f7674049aa660ed1452705e34d2d69615c8324d9ea"
+      sha256: ceb4a9ed6369186a88f50aa6e53fa015d9c7b4b2bf829c6c3019fd809524d639
       url: "https://pub.dev"
     source: hosted
-    version: "1.5.1"
+    version: "1.6.1"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -898,6 +930,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  sky_storage:
+    dependency: "direct main"
+    description:
+      name: sky_storage
+      sha256: "57ae3a4d20db532f9cfcdd5a0e416a25fd7e3aa1eb50944647a9f3df4acd40ba"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
+  sky_storage_hive:
+    dependency: "direct main"
+    description:
+      name: sky_storage_hive
+      sha256: "6644b70a5664e244aedf3f837287d37342f1e15c0fe57159b4e9b7bb9b250f3f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.3"
   sky_telemetry:
     dependency: transitive
     description:
@@ -958,10 +1006,10 @@ packages:
     dependency: transitive
     description:
       name: sqflite_common
-      sha256: cce558075afe2a83f3fd7fc123acd6b090683e4f23910d44fbb31ecd7800b014
+      sha256: "5bf6a55c166e73bf651ba7ec3ed486e577620e3dc8f3a9c6a258a8031b624590"
       url: "https://pub.dev"
     source: hosted
-    version: "2.5.9"
+    version: "2.5.11"
   sqflite_darwin:
     dependency: transitive
     description:
@@ -1162,6 +1210,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.3"
+  yaml_writer:
+    dependency: transitive
+    description:
+      name: yaml_writer
+      sha256: "69651cd7238411179ac32079937d4aa9a2970150d6b2ae2c6fe6de09402a5dc5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
 sdks:
   dart: ">=3.12.0 <4.0.0"
   flutter: "3.44.0"

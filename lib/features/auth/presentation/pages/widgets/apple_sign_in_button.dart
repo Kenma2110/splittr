@@ -10,7 +10,7 @@ class AppleSignInButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppButton.outlined(
-      text: context.strings.google,
+      text: context.strings.apple,
       icon: Icons.apple,
       onPressed: onPressed,
     );

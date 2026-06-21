@@ -73,4 +73,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signUpSuccess => 'Sign Up Successful';
+
+  @override
+  String get guestLogin => 'Login as guest';
 }

@@ -33,11 +33,13 @@ dependencies:
 
   get_it: ^9.1.1
 
+  hive_ce: ^2.19.3
+  hive_ce_generator: ^1.11.1
   injectable: ^2.4.4
 
   intl: ^0.20.2
 
-  json_annotation: ^4.9.0
+  json_annotation: ^4.12.0
 
   lottie: ^3.1.2
 
@@ -46,6 +48,8 @@ dependencies:
   sky_architecture: ^1.4.0
   sky_bloc: ^2.0.3
   sky_design_system: ^1.5.1
+  sky_storage: ^1.0.3
+  sky_storage_hive: ^1.0.3
   sky_utils: ^1.0.2
 
   uuid: ^4.4.2

@@ -8,6 +8,7 @@ import 'package:splittr/features/group_dashboard/presentation/ui/group_dashboard
 import 'package:splittr/features/profile/presentation/ui/profile_page.dart';
 import 'package:splittr/features/quick_settle/presentation/ui/quick_settle_page.dart';
 import 'package:splittr/features/quick_split/presentation/ui/quick_split_page.dart';
+import 'package:splittr/features/quick_split/presentation/ui/split_history_page.dart';
 import 'package:splittr/features/splash/presentation/ui/splash_page.dart';
 
 export 'route_id.dart';
@@ -39,6 +40,7 @@ final class RouteHandler {
         RouteId.groupDashboard => GroupDashboardPage(args: args),
         RouteId.quickSettle => QuickSettlePage(args: args),
         RouteId.quickSplit => QuickSplitPage(args: args),
+        RouteId.splitHistory => SplitHistoryPage(args: args),
       },
     );
   }

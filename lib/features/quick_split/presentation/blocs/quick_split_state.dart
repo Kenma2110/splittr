@@ -45,6 +45,16 @@ sealed class QuickSplitState extends BaseState with _$QuickSplitState {
     required QuickSplitStateStore store,
   }) = QuickSettle;
 
+  const factory QuickSplitState.splitTitleChange({
+    required QuickSplitStateStore store,
+  }) = SplitTitleChange;
+
+  const factory QuickSplitState.loaded({
+    required QuickSplitStateStore store,
+    required List<SplitHistory> history,
+    SplitHistory? currentCalculation,
+  }) = Loaded;
+
   @override
   BaseState getFailureState({required Failure failure}) =>
       QuickSplitState.onFailure(
@@ -64,6 +74,7 @@ class QuickSplitStateStore with _$QuickSplitStateStore {
   const QuickSplitStateStore({
     this.loading = false,
     this.peopleRecords = const [(name: '', amount: ''), (name: '', amount: '')],
+    this.splitTitle = '',
   });
 
   @override
@@ -71,4 +82,7 @@ class QuickSplitStateStore with _$QuickSplitStateStore {
 
   @override
   final List<({String name, String amount})> peopleRecords;
+
+  @override
+  final String splitTitle;
 }

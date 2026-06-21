@@ -5,6 +5,9 @@ import 'package:sky_architecture/sky_architecture.dart';
 import 'package:sky_bloc/sky_bloc.dart';
 import 'package:splittr/constants/constants.dart';
 import 'package:splittr/features/quick_settle/dataclass/split_transaction.dart';
+import 'package:splittr/features/quick_split/domain/entities/split_history.dart';
+import 'package:splittr/features/quick_split/domain/repositories/i_quick_split_repository.dart';
+import 'package:uuid/uuid.dart';
 
 part 'quick_settle_bloc.freezed.dart';
 part 'quick_settle_event.dart';
@@ -13,14 +16,17 @@ part 'quick_settle_state.dart';
 @injectable
 final class QuickSettleBloc
     extends BaseBloc<QuickSettleEvent, QuickSettleState> {
-  QuickSettleBloc()
+  QuickSettleBloc(this._repository)
     : super(const QuickSettleState.initial(store: QuickSettleStateStore()));
+
+  final IQuickSplitRepository _repository;
 
   @override
   void handleEvents() {
     on<_Started>(_onStarted);
     on<_CalculateTransactions>(_onCalculateTransactions);
     on<_ToggleListView>(_onToggleListView);
+    on<_SaveSplit>(_onSaveSplit);
   }
 
   void _onStarted(_Started event, Emitter<QuickSettleState> emit) {
@@ -45,6 +51,7 @@ final class QuickSettleBloc
           total: total,
           individualShare: individualShare,
           individualShareList: individualShareList,
+          splitTitle: event.splitTitle,
         ),
       ),
     );
@@ -160,7 +167,59 @@ final class QuickSettleBloc
     final peopleRecords =
         args?[StringConstants.peopleRecords]
             as List<({double amount, String name})>;
-    add(QuickSettleEvent.started(peopleRecord: peopleRecords));
+    final splitTitle = (args?[StringConstants.splitTitle] as String?) ?? '';
+    add(
+      QuickSettleEvent.started(
+        peopleRecord: peopleRecords,
+        splitTitle: splitTitle,
+      ),
+    );
+  }
+
+  void saveSplit() {
+    add(const QuickSettleEvent.saveSplit());
+  }
+
+  Future<void> _onSaveSplit(
+    _SaveSplit event,
+    Emitter<QuickSettleState> emit,
+  ) async {
+    emit(
+      QuickSettleState.changeLoaderState(
+        store: state.store.copyWith(loading: true),
+      ),
+    );
+
+    try {
+      final individualShares = {
+        for (final item in state.store.peopleRecord) item.name: item.amount,
+      };
+
+      final splitHistory = SplitHistory(
+        id: const Uuid().v4(),
+        title: state.store.splitTitle.isEmpty
+            ? 'Quick Split'
+            : state.store.splitTitle,
+        totalAmount: state.store.total,
+        individualShares: individualShares,
+        createdAt: DateTime.now(),
+      );
+
+      await _repository.saveSplit(splitHistory);
+
+      emit(
+        QuickSettleState.saveSuccess(
+          store: state.store.copyWith(loading: false),
+        ),
+      );
+    } on Exception catch (e) {
+      emit(
+        QuickSettleState.onFailure(
+          store: state.store.copyWith(loading: false),
+          failure: ServerFailure(message: e.toString()),
+        ),
+      );
+    }
   }
 
   void toggleListView() {

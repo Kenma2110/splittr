@@ -8,9 +8,13 @@ sealed class AuthState extends BaseState with _$AuthState {
     required AuthStateStore store,
   }) = Initial;
 
-  const factory AuthState.onUserAuthenticated({
+  const factory AuthState.authenticated({
     required AuthStateStore store,
-  }) = OnUserAuthenticated;
+  }) = Authenticated;
+
+  const factory AuthState.guest({
+    required AuthStateStore store,
+  }) = Guest;
 
   const factory AuthState.onUserUnauthenticated({
     required AuthStateStore store,

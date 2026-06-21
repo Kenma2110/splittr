@@ -5,4 +5,5 @@ final class StringConstants {
   static const createdAt = 'createdAt';
   static const updatedAt = 'updatedAt';
   static const peopleRecords = 'peopleRecords';
+  static const splitTitle = 'splitTitle';
 }

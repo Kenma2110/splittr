@@ -8,13 +8,25 @@ class _QuickSplitForm extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(height: 30),
+        const SizedBox(height: 20),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 36),
+          child: AppTextField(
+            labelText: 'Split Title',
+            hintText: 'e.g. Dinner at Koramangala',
+            onChanged: (title) {
+              getBloc<QuickSplitBloc>(context).add(
+                QuickSplitEvent.splitTitleChanged(splitTitle: title),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 20),
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 36),
           child: Text(
             'Add Name & Amount',
             style: TextStyle(
-              // color: AppColors.whiteColor,
               fontSize: 20,
               fontWeight: FontWeight.w400,
             ),
@@ -124,7 +136,6 @@ class _QuickSplitForm extends StatelessWidget {
           height: 70,
           margin: const EdgeInsets.symmetric(horizontal: 20),
           decoration: BoxDecoration(
-            // color: AppColors.blueButtonColor,
             borderRadius: BorderRadius.circular(20),
           ),
           child: ListTile(

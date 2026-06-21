@@ -17,6 +17,10 @@ sealed class QuickSettleState extends BaseState with _$QuickSettleState {
     required Failure failure,
   }) = OnFailure;
 
+  const factory QuickSettleState.saveSuccess({
+    required QuickSettleStateStore store,
+  }) = SaveSuccess;
+
   @override
   BaseState getFailureState({required Failure failure}) =>
       QuickSettleState.onFailure(
@@ -43,6 +47,7 @@ class QuickSettleStateStore with _$QuickSettleStateStore {
     this.summaryMap = const {},
     this.tags = const [],
     this.toggleCard = true,
+    this.splitTitle = '',
   });
 
   @override
@@ -63,4 +68,6 @@ class QuickSettleStateStore with _$QuickSettleStateStore {
   final List<SplitTransaction> tags;
   @override
   final bool toggleCard;
+  @override
+  final String splitTitle;
 }
