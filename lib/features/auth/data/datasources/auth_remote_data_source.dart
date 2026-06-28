@@ -12,7 +12,7 @@ abstract interface class AuthRemoteDataSource {
     required String name,
   });
 
-  Future<UserModel?> checkAuthStatus();
+  Future<UserModel> checkAuthStatus();
 
   Future<void> logout();
 }

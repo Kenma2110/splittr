@@ -1,17 +1,18 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sky_architecture/sky_architecture.dart';
+import 'package:splittr/features/auth/data/datasources/auth_api_client.dart';
 import 'package:splittr/features/auth/data/datasources/auth_remote_data_source.dart';
+import 'package:splittr/features/auth/data/models/create_user_request_model.dart';
 import 'package:splittr/features/auth/data/models/user_model.dart';
 import 'package:splittr/utils/extensions/firebase_extensions.dart';
 
 @LazySingleton(as: AuthRemoteDataSource)
 final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
-  const AuthRemoteDataSourceImpl(this._firebaseAuth, this._firebaseFirestore);
+  const AuthRemoteDataSourceImpl(this._firebaseAuth, this._authApiClient);
 
   final FirebaseAuth _firebaseAuth;
-  final FirebaseFirestore _firebaseFirestore;
+  final AuthApiClient _authApiClient;
 
   @override
   Future<UserModel> loginWithEmail({
@@ -19,36 +20,12 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String password,
   }) async {
     try {
-      final userCredential = await _firebaseAuth.signInWithEmailAndPassword(
+      await _firebaseAuth.signInWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      final firebaseUser = userCredential.user;
-
-      if (firebaseUser != null) {
-        final userModelDoc = await _firebaseFirestore
-            .collection('users')
-            .doc(firebaseUser.uid)
-            .get();
-
-        if (!userModelDoc.exists) {
-          throw const ServerException(
-            message: 'Authentication failed: User object is null.',
-          );
-        }
-        final userModelJson = userModelDoc.data();
-        if (userModelJson == null) {
-          throw const ServerException(
-            message: 'Authentication failed: User object is null.',
-          );
-        }
-        return UserModel.fromJson(userModelJson);
-      } else {
-        throw const ServerException(
-          message: 'Authentication failed: User object is null.',
-        );
-      }
+      return await _authApiClient.getMe();
     } on FirebaseException catch (e) {
       throw e.toServerException();
     }
@@ -61,61 +38,33 @@ final class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     required String name,
   }) async {
     try {
-      final userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+      await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      final firebaseUser = userCredential.user;
-
-      if (firebaseUser != null) {
-        final userModel = UserModel(
-          id: firebaseUser.uid,
-          name: name,
-          email: email,
-        );
-        await _firebaseFirestore
-            .collection('users')
-            .doc(userModel.id)
-            .set(
-              userModel.toJson()..addAll({
-                'createdAt': FieldValue.serverTimestamp(),
-                'updatedAt': FieldValue.serverTimestamp(),
-              }),
-            );
-
-        return userModel;
-      } else {
-        throw const ServerException(
-          message: 'Authentication failed: User object is null.',
-        );
-      }
+      return await _authApiClient.createUser(
+        CreateUserRequestModel(name: name, email: email),
+      );
     } on FirebaseException catch (e) {
       throw e.toServerException();
     }
   }
 
   @override
-  Future<UserModel?> checkAuthStatus() async {
+  Future<UserModel> checkAuthStatus() async {
     try {
-      final firebaseUser = _firebaseAuth.currentUser;
-      if (firebaseUser == null) {
-        return null;
-      }
+      final user = _firebaseAuth.currentUser;
 
-      final docSnapshot = await _firebaseFirestore
-          .collection('users')
-          .doc(firebaseUser.uid)
-          .get();
-
-      if (docSnapshot.exists && docSnapshot.data() != null) {
-        return UserModel.fromJson(docSnapshot.data()!);
-      } else {
-        await logout();
-        return null;
+      if (user == null) {
+        throw const ServerException(
+          message: 'User not found',
+          code: 'USER_NOT_FOUND',
+        );
       }
-    } on FirebaseException catch (e) {
-      throw e.toServerException();
+      return await _authApiClient.getMe();
+    } on Exception catch (_) {
+      rethrow;
     }
   }
 

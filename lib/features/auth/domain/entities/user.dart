@@ -6,6 +6,7 @@ part 'user.freezed.dart';
 class User with _$User {
   const User({
     this.id,
+    this.firebaseUid,
     this.name,
     this.email,
     this.phone,
@@ -13,6 +14,8 @@ class User with _$User {
 
   @override
   final String? id;
+  @override
+  final String? firebaseUid;
   @override
   final String? name;
   @override

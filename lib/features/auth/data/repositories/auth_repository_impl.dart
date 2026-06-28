@@ -1,6 +1,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sky_architecture/sky_architecture.dart';
+import 'package:sky_network/sky_network.dart';
 import 'package:splittr/features/auth/data/datasources/auth_local_data_source.dart';
 import 'package:splittr/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:splittr/features/auth/data/mappers/user.dart';
@@ -12,26 +13,25 @@ final class AuthRepositoryImpl implements AuthRepository {
   const AuthRepositoryImpl(
     this._authRemoteDataSource,
     this._authLocalDataSource,
+    this._apiCallHandler,
   );
 
   final AuthRemoteDataSource _authRemoteDataSource;
   final AuthLocalDataSource _authLocalDataSource;
+  final ApiCallHandler _apiCallHandler;
 
   @override
   FutureEitherFailure<User> loginWithEmail({
     required String email,
     required String password,
   }) async {
-    try {
-      final userModel = await _authRemoteDataSource.loginWithEmail(
+    final result = await _apiCallHandler.handle(
+      () => _authRemoteDataSource.loginWithEmail(
         email: email,
         password: password,
-      );
-
-      return Right(userModel.toDomain());
-    } on Exception catch (e) {
-      return Left(e.toFailure());
-    }
+      ),
+    );
+    return result.map((userModel) => userModel.toDomain());
   }
 
   @override
@@ -40,16 +40,14 @@ final class AuthRepositoryImpl implements AuthRepository {
     required String password,
     required String name,
   }) async {
-    try {
-      final userModel = await _authRemoteDataSource.signUpWithEmail(
+    final result = await _apiCallHandler.handle(
+      () => _authRemoteDataSource.signUpWithEmail(
         email: email,
         password: password,
         name: name,
-      );
-      return Right(userModel.toDomain());
-    } on Exception catch (e) {
-      return Left(e.toFailure());
-    }
+      ),
+    );
+    return result.map((userModel) => userModel.toDomain());
   }
 
   @override
@@ -59,17 +57,15 @@ final class AuthRepositoryImpl implements AuthRepository {
       if (isGuest) {
         return const Right(User(id: 'guest', name: 'Guest'));
       }
-
-      final userModel = await _authRemoteDataSource.checkAuthStatus();
-
-      if (userModel != null) {
-        return Right(userModel.toDomain());
-      }
-
-      return const Left(ServerFailure(message: 'User Not Found'));
     } on Exception catch (e) {
       return Left(e.toFailure());
     }
+
+    final result = await _apiCallHandler.handle(
+      _authRemoteDataSource.checkAuthStatus,
+    );
+
+    return result.map((userModel) => userModel.toDomain());
   }
 
   @override

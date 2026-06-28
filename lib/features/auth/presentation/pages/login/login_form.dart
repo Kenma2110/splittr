@@ -20,18 +20,27 @@ class _LoginForm extends StatelessWidget {
         const SizedBox(height: AppSpacing.xl),
         AuthFormCard(
           children: [
-            AppTextField(
-              labelText: context.strings.email,
-              hintText: context.strings.emailHintText,
+            EmailTextField(
+              onChanged: (email) =>
+                  getBloc<LoginBloc>(context).emailChanged(email: email),
             ),
-            AppTextField(
-              labelText: context.strings.password,
-              hintText: context.strings.passwordHintText,
-              obscureText: true,
+            PasswordTextField(
+              onChanged: (password) => getBloc<LoginBloc>(
+                context,
+              ).passwordChanged(password: password),
             ),
-            AppButton.primary(
-              text: context.strings.login,
-              onPressed: () {},
+            BlocSelector<LoginBloc, LoginState, bool>(
+              selector: (state) =>
+                  (state.store.emailAddress?.isValid() ?? false) &&
+                  (state.store.password?.isValid() ?? false),
+              builder: (context, isValid) {
+                return AppButton.primary(
+                  text: context.strings.login,
+                  onPressed: isValid
+                      ? () => getBloc<LoginBloc>(context).loginClicked()
+                      : null,
+                );
+              },
             ),
           ],
         ),
@@ -51,9 +60,7 @@ class _LoginForm extends StatelessWidget {
         AppButton.outlined(
           text: context.strings.guestLogin,
           icon: Icons.person,
-          onPressed: () {
-            context.read<AuthBloc>().loginAsGuest();
-          },
+          onPressed: () => getBloc<AuthBloc>(context).loginAsGuest(),
         ),
       ],
     );

@@ -8,6 +8,18 @@ sealed class LoginState extends BaseState with _$LoginState {
     required LoginStateStore store,
   }) = Initial;
 
+  const factory LoginState.onEmailChange({
+    required LoginStateStore store,
+  }) = OnEmailChange;
+
+  const factory LoginState.onPasswordChange({
+    required LoginStateStore store,
+  }) = OnPasswordChange;
+
+  const factory LoginState.onLoginSuccess({
+    required LoginStateStore store,
+  }) = OnLoginSuccess;
+
   const factory LoginState.onLoadingStateChange({
     required LoginStateStore store,
   }) = OnLoadingStateChange;
@@ -18,14 +30,14 @@ sealed class LoginState extends BaseState with _$LoginState {
   }) = OnFailure;
 
   @override
-  BaseState getLoadingState({required bool loading}) {
+  LoginState getLoadingState({required bool loading}) {
     return LoginState.onLoadingStateChange(
       store: store.copyWith(loading: loading),
     );
   }
 
   @override
-  BaseState getFailureState({required Failure failure}) {
+  LoginState getFailureState({required Failure failure}) {
     return LoginState.onFailure(
       store: store.copyWith(loading: false),
       failure: failure,
@@ -37,8 +49,14 @@ sealed class LoginState extends BaseState with _$LoginState {
 class LoginStateStore with _$LoginStateStore {
   const LoginStateStore({
     this.loading = false,
+    this.emailAddress,
+    this.password,
   });
 
   @override
   final bool loading;
+  @override
+  final EmailAddress? emailAddress;
+  @override
+  final Password? password;
 }
