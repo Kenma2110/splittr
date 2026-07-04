@@ -32,11 +32,13 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
           hintText: context.strings.passwordHintText,
           obscureText: obscureText,
           onChanged: widget.onChanged,
-          suffixIcon: AppIconButton(
-            icon: obscureText ? Icons.visibility : Icons.visibility_off,
-            onPressed: () {
-              _obscureText.value = !obscureText;
-            },
+          suffixIcon: ExcludeFocus(
+            child: AppIconButton(
+              icon: obscureText ? Icons.visibility : Icons.visibility_off,
+              onPressed: () {
+                _obscureText.value = !obscureText;
+              },
+            ),
           ),
           validator: (password) {
             if (password?.isNotEmpty ?? false) {

@@ -39,8 +39,13 @@ targets:
           - lib/features/personal_transaction/data/dtos/personal_transaction_dto.dart
           - lib/features/*/domain/entities/*.dart
 
+      retrofit_generator:
+        generate_for:
+          - lib/features/*/data/datasources/*_api_client.dart
+
       injectable_generator:injectable_builder:
         generate_for:
+          - lib/features/*/data/datasources/*_api_client.dart
           - lib/core/auth/data/repositories/auth_repository.dart
           - lib/core/firebase/data/repositories/firestore_database_repository.dart
           - lib/core/global/presentation/blocs/global_bloc.dart
@@ -65,3 +70,10 @@ targets:
           - lib/features/*/data/datasources/*_impl.dart
           - lib/features/*/data/repositories/*_impl.dart
           - lib/features/*/domain/usecases/*.dart
+          - lib/core/network/network_module.dart
+          - lib/core/firebase/firebase_auth_interceptor.dart
+
+
+      envied_generator:envied:
+        generate_for:
+          - lib/core/app_config/env/*.dart

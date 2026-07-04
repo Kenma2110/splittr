@@ -12,4 +12,10 @@ final class DevAppConfig implements IAppConfig {
 
   @override
   String get appName => 'Splittr Dev';
+
+  @override
+  String get apiBaseUrl => MultiEnv.instance.apiBaseUrl;
+
+  @override
+  String get vercelBypassKey => MultiEnv.instance.vercelBypassKey;
 }

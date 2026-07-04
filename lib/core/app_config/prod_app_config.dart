@@ -12,4 +12,10 @@ final class ProdAppConfig implements IAppConfig {
 
   @override
   String get appName => 'Splittr';
+
+  @override
+  String get apiBaseUrl => MultiEnv.instance.apiBaseUrl;
+
+  @override
+  String get vercelBypassKey => MultiEnv.instance.vercelBypassKey;
 }

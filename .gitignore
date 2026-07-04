@@ -57,3 +57,7 @@ firebase_options*.dart
 /.fvmrc
 /.vscode/settings.json
 /.antigravitycli/
+
+# Environment configurations
+.env.dev
+.env.prod

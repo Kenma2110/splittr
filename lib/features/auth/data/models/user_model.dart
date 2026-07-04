@@ -6,6 +6,7 @@ part 'user_model.g.dart';
 class UserModel {
   const UserModel({
     this.id,
+    this.firebaseUid,
     this.name,
     this.email,
     this.phone,
@@ -15,6 +16,7 @@ class UserModel {
       _$UserModelFromJson(json);
 
   final String? id;
+  final String? firebaseUid;
   final String? name;
   final String? email;
   final String? phone;
