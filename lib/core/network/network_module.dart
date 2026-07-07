@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
+import 'package:sky_devtools/sky_devtools.dart';
 import 'package:sky_network/sky_network.dart';
+import 'package:sky_telemetry/sky_telemetry.dart';
 import 'package:splittr/constants/env/env.dart';
 import 'package:splittr/core/app_config/i_app_config.dart';
 import 'package:splittr/core/firebase/firebase_auth_interceptor.dart';
@@ -36,6 +38,20 @@ abstract class NetworkModule {
     final interceptors = <Interceptor>[
       authInterceptor,
     ];
+
+    if (appConfig.env == Env.dev) {
+      final talkerLogger = AppLoggerRegistry.instance.loggers
+          .whereType<TalkerAppLogger>()
+          .firstOrNull;
+
+      if (talkerLogger != null) {
+        interceptors.add(
+          StructuredTalkerDioInterceptor(
+            talkerLogger.talker,
+          ),
+        );
+      }
+    }
 
     return dioFactory.create(
       options: options,
