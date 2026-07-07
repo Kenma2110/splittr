@@ -76,4 +76,16 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get guestLogin => 'Login as guest';
+
+  @override
+  String get dashboard => 'Dashboard';
+
+  @override
+  String get groups => 'Groups';
+
+  @override
+  String get activities => 'Activities';
+
+  @override
+  String get logout => 'Logout';
 }

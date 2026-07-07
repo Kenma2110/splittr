@@ -6,9 +6,7 @@ class _DashboardForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text(
-        'Dashboard Page ',
-      ),
+      child: Text('Dashboard'),
     );
   }
 }

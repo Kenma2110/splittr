@@ -4,17 +4,22 @@ part of 'groups_bloc.dart';
 sealed class GroupsState extends BaseState with _$GroupsState {
   const GroupsState._();
 
-  const factory GroupsState.initial({required GroupsStateStore store}) =
-      Initial;
-
-  const factory GroupsState.changeLoaderState({
+  const factory GroupsState.initial({
     required GroupsStateStore store,
-  }) = ChangeLoaderState;
+  }) = Initial;
+
+  const factory GroupsState.onGroupsUpdate({
+    required GroupsStateStore store,
+  }) = OnGroupsUpdate;
 
   const factory GroupsState.onFailure({
     required GroupsStateStore store,
     required Failure failure,
   }) = OnFailure;
+
+  const factory GroupsState.changeLoaderState({
+    required GroupsStateStore store,
+  }) = ChangeLoaderState;
 
   @override
   BaseState getFailureState({required Failure failure}) =>
@@ -30,8 +35,14 @@ sealed class GroupsState extends BaseState with _$GroupsState {
 
 @freezed
 class GroupsStateStore with _$GroupsStateStore {
-  const GroupsStateStore({this.loading = false});
+  const GroupsStateStore({
+    required this.groups,
+    this.loading = false,
+  });
 
   @override
   final bool loading;
+
+  @override
+  final List<Group> groups;
 }
