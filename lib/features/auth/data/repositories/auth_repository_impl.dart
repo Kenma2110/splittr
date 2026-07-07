@@ -102,6 +102,7 @@ final class AuthRepositoryImpl implements AuthRepository {
         _authLocalDataSource.clearSession(),
         _authRemoteDataSource.logout(),
       ).wait;
+
       _sessionStreamController.add(const None());
 
       return const Right(unit);

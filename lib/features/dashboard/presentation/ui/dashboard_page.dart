@@ -4,7 +4,6 @@ import 'package:sky_bloc/sky_bloc.dart';
 import 'package:splittr/di/injection.dart';
 import 'package:splittr/features/auth/presentation/blocs/auth_bloc.dart';
 import 'package:splittr/features/dashboard/presentation/blocs/dashboard_bloc.dart';
-import 'package:splittr/utils/extensions/extensions.dart';
 
 part 'dashboard_form.dart';
 
@@ -20,20 +19,6 @@ class DashboardPage extends BasePage<DashboardBloc, DashboardState> {
   Widget buildPage(BuildContext context) {
     return Scaffold(
       body: const _DashboardForm(),
-      appBar: AppBar(
-        title: BlocSelector<DashboardBloc, DashboardState, int>(
-          selector: (state) => state.store.selectedIndex,
-          builder: (context, index) {
-            final title = switch (index) {
-              0 => context.strings.dashboard,
-              1 => context.strings.groups,
-              2 => context.strings.activities,
-              _ => '',
-            };
-            return Text(title);
-          },
-        ),
-      ),
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,

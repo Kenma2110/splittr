@@ -14,18 +14,18 @@ class PasswordTextField extends StatefulWidget {
 }
 
 class _PasswordTextFieldState extends State<PasswordTextField> {
-  late final ValueNotifier<bool> _obscureText;
+  late final ValueNotifier<bool> _obscureTextNotifier;
 
   @override
   void initState() {
-    _obscureText = ValueNotifier(true);
     super.initState();
+    _obscureTextNotifier = ValueNotifier(true);
   }
 
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: _obscureText,
+      valueListenable: _obscureTextNotifier,
       builder: (context, obscureText, _) {
         return AppTextField(
           labelText: context.strings.password,
@@ -36,7 +36,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
             child: AppIconButton(
               icon: obscureText ? Icons.visibility_off : Icons.visibility,
               onPressed: () {
-                _obscureText.value = !obscureText;
+                _obscureTextNotifier.value = !obscureText;
               },
             ),
           ),
