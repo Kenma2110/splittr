@@ -1,10 +1,10 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'groups_model.g.dart';
+part 'group.freezed.dart';
 
-@JsonSerializable()
-class GroupModel {
-  const GroupModel({
+@freezed
+class Group with _$Group {
+  const Group({
     this.id,
     this.name,
     this.description,
@@ -12,14 +12,14 @@ class GroupModel {
     this.createdBy,
   });
 
-  factory GroupModel.fromJson(Map<String, dynamic> json) =>
-      _$GroupModelFromJson(json);
-
+  @override
   final String? id;
+  @override
   final String? name;
+  @override
   final String? description;
+  @override
   final String? inviteCode;
+  @override
   final String? createdBy;
-
-  Map<String, dynamic> toJson() => _$GroupModelToJson(this);
 }

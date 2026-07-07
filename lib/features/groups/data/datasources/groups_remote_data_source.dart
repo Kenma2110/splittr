@@ -1,6 +1,6 @@
-import 'package:splittr/features/groups/data/models/groups_model.dart';
+import 'package:splittr/features/groups/data/models/group_model.dart';
 
-abstract interface class GroupsDatasource {
+abstract interface class GroupsDataSource {
   Future<List<GroupModel>> getGroups();
 
   Future<GroupModel> createGroup({

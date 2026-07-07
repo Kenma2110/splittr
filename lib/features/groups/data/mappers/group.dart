@@ -1,5 +1,5 @@
-import 'package:splittr/features/groups/data/models/groups_model.dart';
-import 'package:splittr/features/groups/domain/entities/groups.dart';
+import 'package:splittr/features/groups/data/models/group_model.dart';
+import 'package:splittr/features/groups/domain/entities/group.dart';
 
 extension GroupModelX on GroupModel {
   Group toDomain() => Group(
