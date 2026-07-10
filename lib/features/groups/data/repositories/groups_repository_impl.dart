@@ -22,7 +22,6 @@ final class GroupsRepositoryImpl implements GroupsRepository {
         const Right([]),
       );
 
-  // 2. Expose the stream for your Bloc to listen to
   @override
   Stream<EitherFailure<List<Group>>> get watchGroups => _groupsSubject.stream;
 
@@ -40,7 +39,6 @@ final class GroupsRepositoryImpl implements GroupsRepository {
 
     return result.fold(
       (failure) {
-        _groupsSubject.add(Left(failure));
         return Left(failure);
       },
       (groupModel) {
@@ -73,7 +71,6 @@ final class GroupsRepositoryImpl implements GroupsRepository {
     );
   }
 
-  // Ensure memory is freed if the repository is ever destroyed
   @override
   @disposeMethod
   Future<void> dispose() async {

@@ -2,23 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sky_architecture/sky_architecture.dart';
 import 'package:sky_design_system/sky_design_system.dart';
-import 'package:splittr/features/groups/presentation/blocs/groups_bloc.dart';
+import 'package:splittr/features/groups/presentation/blocs/create_group/create_group_bloc.dart';
 import 'package:splittr/utils/bloc_utils/bloc_utils.dart';
 import 'package:splittr/utils/extensions/l10n_extensions.dart';
 
-class CreateGroupBottomSheet extends StatefulWidget {
+class CreateGroupBottomSheet extends StatelessWidget {
   const CreateGroupBottomSheet({super.key});
 
   @override
-  State<CreateGroupBottomSheet> createState() => _CreateGroupBottomSheetState();
-}
-
-class _CreateGroupBottomSheetState extends State<CreateGroupBottomSheet> {
-  @override
   Widget build(BuildContext context) {
-    return BlocListener<GroupsBloc, GroupsState>(
+    return BlocListener<CreateGroupBloc, CreateGroupState>(
       listener: (context, state) {
-        if (state is OnGroupsUpdate) {
+        if (state is OnCreateGroupSuccess) {
           Navigator.of(context).pop();
         }
       },
@@ -40,7 +35,7 @@ class _CreateGroupBottomSheetState extends State<CreateGroupBottomSheet> {
             const SizedBox(height: 16),
             AppTextField(
               labelText: context.strings.groupName,
-              onChanged: (groupName) => getBloc<GroupsBloc>(
+              onChanged: (groupName) => getBloc<CreateGroupBloc>(
                 context,
               ).groupNameChanged(groupName: groupName),
               validator: (groupName) {
@@ -55,7 +50,7 @@ class _CreateGroupBottomSheetState extends State<CreateGroupBottomSheet> {
             const SizedBox(height: 16),
             AppTextField(
               labelText: context.strings.groupDescription,
-              onChanged: (groupDescription) => getBloc<GroupsBloc>(
+              onChanged: (groupDescription) => getBloc<CreateGroupBloc>(
                 context,
               ).groupDescriptionChanged(groupDescription: groupDescription),
               validator: (groupDescription) {
@@ -68,15 +63,17 @@ class _CreateGroupBottomSheetState extends State<CreateGroupBottomSheet> {
               },
             ),
             const SizedBox(height: 24),
-            BlocSelector<GroupsBloc, GroupsState, bool>(
+            BlocSelector<CreateGroupBloc, CreateGroupState, bool>(
               selector: (state) =>
-                  (state.store.groupName?.isNotEmpty ?? false) &&
-                  (state.store.groupDescription?.isNotEmpty ?? false),
+                  state.store.groupName.trim().isNotEmpty &&
+                  state.store.groupDescription.trim().isNotEmpty,
               builder: (context, isValid) {
                 return AppButton.primary(
                   text: context.strings.createGroup,
                   onPressed: isValid
-                      ? () => getBloc<GroupsBloc>(context).createGroupClicked()
+                      ? () => getBloc<CreateGroupBloc>(
+                          context,
+                        ).createGroupButtonClicked()
                       : null,
                 );
               },
