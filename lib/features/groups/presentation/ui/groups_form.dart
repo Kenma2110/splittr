@@ -51,7 +51,6 @@ class _GroupsForm extends StatelessWidget {
                       );
                     },
                   ),
-          _ => const SizedBox.shrink(),
         };
       },
     );
