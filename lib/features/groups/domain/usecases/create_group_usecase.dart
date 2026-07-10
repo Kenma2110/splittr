@@ -6,8 +6,8 @@ import 'package:splittr/features/groups/domain/repositories/groups_repository.da
 
 // TODO(Chaitanya): make it equatable
 @lazySingleton
-final class CreateGroupsUseCase implements UseCase<Group, CreateGroupParams> {
-  const CreateGroupsUseCase(this._groupsRepository);
+final class CreateGroupUseCase implements UseCase<Group, CreateGroupParams> {
+  const CreateGroupUseCase(this._groupsRepository);
 
   final GroupsRepository _groupsRepository;
 
