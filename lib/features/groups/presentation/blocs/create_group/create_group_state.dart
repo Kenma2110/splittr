@@ -12,6 +12,14 @@ sealed class CreateGroupState extends BaseState with _$CreateGroupState {
     required CreateGroupStateStore store,
   }) = OnCreateGroupSuccess;
 
+  const factory CreateGroupState.onGroupNameChange({
+    required CreateGroupStateStore store,
+  }) = OnGroupNameChange;
+
+  const factory CreateGroupState.onGroupDescriptionChange({
+    required CreateGroupStateStore store,
+  }) = OnGroupDescriptionChange;
+
   const factory CreateGroupState.onFailure({
     required CreateGroupStateStore store,
     required Failure failure,
@@ -46,9 +54,11 @@ class CreateGroupStateStore with _$CreateGroupStateStore {
   @override
   final bool loading;
 
+  // TODO(Chaitanya): use value object
   @override
   final String groupName;
 
+  // TODO(Chaitanya): use value object
   @override
   final String groupDescription;
 }

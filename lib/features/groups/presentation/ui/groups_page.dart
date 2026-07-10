@@ -1,12 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sky_bloc/sky_bloc.dart';
 import 'package:sky_design_system/sky_design_system.dart';
 import 'package:splittr/di/injection.dart';
-import 'package:splittr/features/groups/presentation/blocs/create_group/create_group_bloc.dart'
-    hide Initial;
-import 'package:splittr/features/groups/presentation/blocs/groups_bloc.dart'
-    hide ChangeLoaderState, OnFailure;
+import 'package:splittr/features/groups/presentation/blocs/groups_bloc.dart';
 import 'package:splittr/features/groups/presentation/ui/widgets/create_group_bottom_sheet.dart';
 
 part 'groups_form.dart';
@@ -30,17 +29,16 @@ class GroupsPage extends BasePage<GroupsBloc, GroupsState> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => _showCreateGroupSheet(context),
-        child: const Icon(Icons.add),
+        child: const AppIcon.md(Icons.add),
       ),
       body: const _GroupsForm(),
     );
   }
 
-  Future<void> _showCreateGroupSheet(BuildContext context) async {
-    await AppBottomSheet.show<void>(
-      context: context,
-      child: BlocProvider(
-        create: (context) => getIt<CreateGroupBloc>(),
+  void _showCreateGroupSheet(BuildContext context) {
+    unawaited(
+      AppBottomSheet.show<void>(
+        context: context,
         child: const CreateGroupBottomSheet(),
       ),
     );

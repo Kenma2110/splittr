@@ -14,10 +14,10 @@ part 'create_group_state.dart';
 @injectable
 final class CreateGroupBloc
     extends BaseBloc<CreateGroupEvent, CreateGroupState> {
-  CreateGroupBloc(this._createGroupsUseCase)
-    : super(const CreateGroupState.initial(store: CreateGroupStateStore())) {}
+  CreateGroupBloc(this._createGroupUseCase)
+    : super(const CreateGroupState.initial(store: CreateGroupStateStore()));
 
-  final CreateGroupsUseCase _createGroupsUseCase;
+  final CreateGroupUseCase _createGroupUseCase;
 
   @override
   void handleEvents() {
@@ -34,7 +34,7 @@ final class CreateGroupBloc
     Emitter<CreateGroupState> emit,
   ) {
     emit(
-      CreateGroupState.changeLoaderState(
+      CreateGroupState.onGroupNameChange(
         store: state.store.copyWith(groupName: event.groupName),
       ),
     );
@@ -45,7 +45,7 @@ final class CreateGroupBloc
     Emitter<CreateGroupState> emit,
   ) {
     emit(
-      CreateGroupState.changeLoaderState(
+      CreateGroupState.onGroupDescriptionChange(
         store: state.store.copyWith(groupDescription: event.groupDescription),
       ),
     );
@@ -56,19 +56,17 @@ final class CreateGroupBloc
     Emitter<CreateGroupState> emit,
   ) async {
     changeLoadingState(emit: emit, loading: true);
-    final result = await _createGroupsUseCase.call(
+
+    final result = await _createGroupUseCase.call(
       CreateGroupParams(
         name: state.store.groupName,
         description: state.store.groupDescription,
       ),
     );
+
     result.fold(
-      (failure) {
-        handleFailure(emit: emit, failure: failure);
-      },
-      (_) {
-        emit(CreateGroupState.onCreateGroupSuccess(store: state.store));
-      },
+      (failure) => handleFailure(emit: emit, failure: failure),
+      (_) => emit(CreateGroupState.onCreateGroupSuccess(store: state.store)),
     );
   }
 
