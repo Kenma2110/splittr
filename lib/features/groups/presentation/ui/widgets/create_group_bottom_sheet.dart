@@ -31,9 +31,8 @@ class _BottomSheetBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+    return AppScrollView(
+      mainAxisSize: .min,
       children: [
         Text(
           context.strings.createGroup,
