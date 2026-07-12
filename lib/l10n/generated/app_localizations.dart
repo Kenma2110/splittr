@@ -262,6 +262,12 @@ abstract class AppLocalizations {
   /// **'Create Group'**
   String get createGroup;
 
+  /// No description provided for @joinGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Group'**
+  String get joinGroup;
+
   /// No description provided for @activities.
   ///
   /// In en, this message translates to:
@@ -273,6 +279,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Logout'**
   String get logout;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @enterCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the invite code shared by your friend.'**
+  String get enterCode;
+
+  /// No description provided for @groupCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Group Code'**
+  String get groupCode;
+
+  /// No description provided for @validGroupCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid group code'**
+  String get validGroupCode;
 }
 
 class _AppLocalizationsDelegate

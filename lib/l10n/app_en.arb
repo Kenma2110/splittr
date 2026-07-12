@@ -28,6 +28,11 @@
   "groupName": "Group Name",
   "groupDescription": "Group Description",
   "createGroup": "Create Group",
+  "joinGroup": "Join Group",
   "activities": "Activities",
-  "logout": "Logout"
+  "logout": "Logout",
+  "profile": "Profile",
+  "enterCode" : "Enter the invite code shared by your friend.",
+  "groupCode" : "Group Code",
+  "validGroupCode" : "Please enter a valid group code"
 }

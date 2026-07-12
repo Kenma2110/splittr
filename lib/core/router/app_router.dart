@@ -7,6 +7,7 @@ import 'package:splittr/features/auth/presentation/pages/login/login_page.dart';
 import 'package:splittr/features/auth/presentation/pages/sign_up/sign_up_page.dart';
 import 'package:splittr/features/dashboard/presentation/ui/dashboard_page.dart';
 import 'package:splittr/features/dashboard/presentation/ui/dashboard_shell.dart';
+import 'package:splittr/features/groups/presentation/ui/group_detail/group_detail_page.dart';
 import 'package:splittr/features/groups/presentation/ui/groups_page.dart';
 import 'package:splittr/features/profile/presentation/ui/profile_page.dart';
 import 'package:splittr/features/quick_settle/presentation/ui/quick_settle_page.dart';
@@ -121,6 +122,11 @@ final List<RouteBase> _routes = [
     path: RoutePaths.signUp,
     builder: (context, state) =>
         SignUpPage(args: state.extra as Map<String, dynamic>?),
+  ),
+  GoRoute(
+    path: RoutePaths.groupDetail,
+    builder: (context, state) =>
+        GroupDetailPage(args: state.extra as Map<String, dynamic>?),
   ),
   ShellRoute(
     builder: (context, state, child) => DashboardShell(

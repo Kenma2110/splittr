@@ -93,8 +93,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createGroup => 'Create Group';
 
   @override
+  String get joinGroup => 'Join Group';
+
+  @override
   String get activities => 'Activities';
 
   @override
   String get logout => 'Logout';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get enterCode => 'Enter the invite code shared by your friend.';
+
+  @override
+  String get groupCode => 'Group Code';
+
+  @override
+  String get validGroupCode => 'Please enter a valid group code';
 }

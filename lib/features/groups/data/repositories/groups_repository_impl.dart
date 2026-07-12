@@ -17,7 +17,7 @@ final class GroupsRepositoryImpl implements GroupsRepository {
   final GroupsDataSource _groupsDataSource;
 
   final BehaviorSubject<EitherFailure<List<Group>>> _groupsSubject =
-      BehaviorSubject.seeded(const Right([]));
+      BehaviorSubject<EitherFailure<List<Group>>>();
 
   @override
   ValueStream<EitherFailure<List<Group>>> get watchGroups =>
@@ -45,6 +45,18 @@ final class GroupsRepositoryImpl implements GroupsRepository {
         name: name,
         description: description,
       ),
+    );
+
+    return result.map((groupModel) {
+      unawaited(getGroups());
+      return groupModel.toDomain();
+    });
+  }
+
+  @override
+  FutureEitherFailure<Group> joinGroup({required String inviteCode}) async {
+    final result = await _apiCallHandler.handle(
+      () => _groupsDataSource.joinGroup(inviteCode: inviteCode),
     );
 
     return result.map((groupModel) {
