@@ -4,9 +4,9 @@ import 'package:splittr/features/groups/data/datasources/groups_remote_data_sour
 import 'package:splittr/features/groups/data/models/create_group_payload.dart';
 import 'package:splittr/features/groups/data/models/group_model.dart';
 
-@LazySingleton(as: GroupsDataSource)
-final class GroupsDatasourceImpl implements GroupsDataSource {
-  const GroupsDatasourceImpl(this._groupsApiClient);
+@LazySingleton(as: GroupsRemoteDataSource)
+final class GroupsRemoteDataSourceImpl implements GroupsRemoteDataSource {
+  const GroupsRemoteDataSourceImpl(this._groupsApiClient);
 
   final GroupsApiClient _groupsApiClient;
 
