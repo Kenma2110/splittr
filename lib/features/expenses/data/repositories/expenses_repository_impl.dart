@@ -14,10 +14,13 @@ import 'package:splittr/features/expenses/domain/repositories/expenses_repositor
 
 @LazySingleton(as: ExpensesRepository)
 final class ExpensesRepositoryImpl implements ExpensesRepository {
-  const ExpensesRepositoryImpl(this._apiCallHandler, this._dataSource);
+  const ExpensesRepositoryImpl(
+    this._apiCallHandler,
+    this._expensesRemoteDataSource,
+  );
 
   final ApiCallHandler _apiCallHandler;
-  final ExpensesRemoteDataSource _dataSource;
+  final ExpensesRemoteDataSource _expensesRemoteDataSource;
 
   @override
   FutureEitherFailure<Expense> createExpense({
@@ -31,7 +34,7 @@ final class ExpensesRepositoryImpl implements ExpensesRepository {
     String? groupId,
   }) async {
     final result = await _apiCallHandler.handle(
-      () => _dataSource.createExpense(
+      () => _expensesRemoteDataSource.createExpense(
         CreateExpensePayload(
           description: description,
           amount: amount,
@@ -50,7 +53,7 @@ final class ExpensesRepositoryImpl implements ExpensesRepository {
   @override
   FutureEitherFailure<Expense> getExpenseDetails(String id) async {
     final result = await _apiCallHandler.handle(
-      () => _dataSource.getExpenseDetails(id),
+      () => _expensesRemoteDataSource.getExpenseDetails(id),
     );
     return result.map((details) => details.toDomain());
   }
@@ -64,7 +67,7 @@ final class ExpensesRepositoryImpl implements ExpensesRepository {
     String? groupId,
   }) async {
     final result = await _apiCallHandler.handle(
-      () => _dataSource.settleExpense(
+      () => _expensesRemoteDataSource.settleExpense(
         SettleExpensePayload(
           amount: amount,
           currency: currency,
@@ -83,7 +86,10 @@ final class ExpensesRepositoryImpl implements ExpensesRepository {
     bool? simplified,
   }) async {
     final result = await _apiCallHandler.handle(
-      () => _dataSource.getBalances(groupId: groupId, simplified: simplified),
+      () => _expensesRemoteDataSource.getBalances(
+        groupId: groupId,
+        simplified: simplified,
+      ),
     );
     return result.map((balancesModel) => balancesModel.toDomain());
   }

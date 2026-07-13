@@ -11,10 +11,10 @@ import 'package:splittr/features/groups/domain/repositories/groups_repository.da
 
 @LazySingleton(as: GroupsRepository)
 final class GroupsRepositoryImpl implements GroupsRepository {
-  GroupsRepositoryImpl(this._apiCallHandler, this._groupsDataSource);
+  GroupsRepositoryImpl(this._apiCallHandler, this._groupsRemoteDataSource);
 
   final ApiCallHandler _apiCallHandler;
-  final GroupsDataSource _groupsDataSource;
+  final GroupsRemoteDataSource _groupsRemoteDataSource;
 
   final BehaviorSubject<EitherFailure<List<Group>>> _groupsSubject =
       BehaviorSubject.seeded(const Right([]));
@@ -26,7 +26,7 @@ final class GroupsRepositoryImpl implements GroupsRepository {
   @override
   FutureEitherFailure<List<Group>> getGroups() async {
     final result = await _apiCallHandler.handle(
-      _groupsDataSource.getGroups,
+      _groupsRemoteDataSource.getGroups,
     );
 
     final groupsOrFailure = result.map((groups) => groups.toDomain());
@@ -41,7 +41,7 @@ final class GroupsRepositoryImpl implements GroupsRepository {
     required String description,
   }) async {
     final result = await _apiCallHandler.handle(
-      () => _groupsDataSource.createGroup(
+      () => _groupsRemoteDataSource.createGroup(
         name: name,
         description: description,
       ),
