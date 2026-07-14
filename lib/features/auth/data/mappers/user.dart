@@ -10,3 +10,7 @@ extension UserModelX on UserModel {
     phone: phone,
   );
 }
+
+extension UserModelListX on List<UserModel> {
+  List<User> toDomain() => map((m) => m.toDomain()).toList();
+}
