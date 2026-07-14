@@ -10,7 +10,7 @@ final class RoutePaths {
   static const signUp = '/sign-up';
   static const dashboard = '/dashboard';
   static const groups = '/groups';
-  static const groupDetail = '/groups/group-detail';
+  static const groupDetails = '/groups/group-details';
   static const profile = '/profile';
   static const groupDashboard = '/group-dashboard/:groupId';
   static const quickSettle = '/quick-settle';

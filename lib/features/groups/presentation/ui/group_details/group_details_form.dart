@@ -1,7 +1,7 @@
-part of 'group_detail_page.dart';
+part of 'group_details_page.dart';
 
-class _GroupDetailForm extends StatelessWidget {
-  const _GroupDetailForm({required this.group});
+class _GroupDetailsForm extends StatelessWidget {
+  const _GroupDetailsForm({required this.group});
 
   final Group group;
 

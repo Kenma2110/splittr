@@ -3,7 +3,7 @@ import 'package:sky_bloc/sky_bloc.dart';
 import 'package:sky_design_system/sky_design_system.dart';
 import 'package:sky_router/sky_router.dart';
 import 'package:splittr/di/injection.dart';
-import 'package:splittr/features/groups/presentation/blocs/group_detail/group_detail_bloc.dart';
+import 'package:splittr/features/groups/presentation/blocs/group_details/group_details_bloc.dart';
 import 'package:splittr/utils/extensions/extensions.dart';
 
 class JoinGroupBottomSheet extends StatefulWidget {
@@ -17,8 +17,8 @@ class _JoinGroupBottomSheetState extends State<JoinGroupBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => getIt<GroupDetailBloc>(),
-      child: BlocListener<GroupDetailBloc, GroupDetailState>(
+      create: (context) => getIt<GroupDetailsBloc>(),
+      child: BlocListener<GroupDetailsBloc, GroupDetailsState>(
         listener: (context, state) => switch (state) {
           JoinGroupSuccess _ => RouteHandler.pop<void>(context),
           _ => () {},
@@ -50,20 +50,20 @@ class _SheetBody extends StatelessWidget {
         ),
         const SizedBox(height: AppSpacing.md),
         AppTextField(
-          onChanged: (inviteCode) => getBloc<GroupDetailBloc>(
+          onChanged: (inviteCode) => getBloc<GroupDetailsBloc>(
             context,
           ).inviteCodeChanged(inviteCode: inviteCode),
           labelText: context.strings.groupCode,
         ),
         const SizedBox(height: AppSpacing.lg),
-        BlocSelector<GroupDetailBloc, GroupDetailState, bool>(
+        BlocSelector<GroupDetailsBloc, GroupDetailsState, bool>(
           selector: (state) => state.store.inviteCode.trim().isNotEmpty,
           builder: (context, isValid) {
             return AppButton.primary(
               text: context.strings.joinGroup,
               // TODO(Chaitanya): add loading condition
               onPressed: isValid
-                  ? () => getBloc<GroupDetailBloc>(
+                  ? () => getBloc<GroupDetailsBloc>(
                       context,
                     ).joinGroupButtonClicked()
                   : null,

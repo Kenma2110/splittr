@@ -17,7 +17,7 @@ final class GroupsRepositoryImpl implements GroupsRepository {
   final GroupsRemoteDataSource _groupsRemoteDataSource;
 
   final BehaviorSubject<EitherFailure<List<Group>>> _groupsSubject =
-      BehaviorSubject<EitherFailure<List<Group>>>();
+      BehaviorSubject.seeded(const Right([]));
 
   @override
   ValueStream<EitherFailure<List<Group>>> get watchGroups =>
@@ -56,7 +56,7 @@ final class GroupsRepositoryImpl implements GroupsRepository {
   @override
   FutureEitherFailure<Group> joinGroup({required String inviteCode}) async {
     final result = await _apiCallHandler.handle(
-      () => _groupsDataSource.joinGroup(inviteCode: inviteCode),
+      () => _groupsRemoteDataSource.joinGroup(inviteCode: inviteCode),
     );
 
     return result.map((groupModel) {

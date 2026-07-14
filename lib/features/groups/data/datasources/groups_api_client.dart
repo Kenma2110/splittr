@@ -17,7 +17,7 @@ abstract class GroupsApiClient {
   Future<List<GroupModel>> getGroups();
 
   @POST('/join')
-  Future<GroupModel> joinGroup(@Body() JoinGroupModel inviteCode);
+  Future<GroupModel> joinGroup(@Body() JoinGroupModel body);
 
   @POST('/')
   Future<GroupModel> createGroup(@Body() CreateGroupPayload body);

@@ -7,9 +7,10 @@ class _GroupsForm extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<GroupsBloc, GroupsState>(
       builder: (context, state) {
+        if (state.store.loading && state.store.groups.isEmpty) {
+          return _buildShimmerList();
+        }
         return switch (state) {
-          Initial() || ChangeLoaderState() => _buildShimmerList(),
-
           OnFailure(:final failure) => _buildErrorState(
             context,
             failure.message,
@@ -19,6 +20,7 @@ class _GroupsForm extends StatelessWidget {
             state.store.groups.isEmpty && !state.store.loading
                 ? _buildEmptyState(context)
                 : _buildGroupsList(state.store.groups),
+          (_) => const SizedBox(),
         };
       },
     );
@@ -125,7 +127,7 @@ class _GroupsForm extends StatelessWidget {
           onTap: () async {
             await RouteHandler.push<void>(
               context,
-              RoutePaths.groupDetail,
+              RoutePaths.groupDetails,
               extra: {'group': group},
             );
           },

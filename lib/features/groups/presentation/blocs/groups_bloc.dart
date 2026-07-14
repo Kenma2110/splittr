@@ -74,7 +74,7 @@ final class GroupsBloc extends BaseBloc<GroupsEvent, GroupsState> {
   ) {
     emit(
       GroupsState.onGroupsUpdate(
-        store: state.store.copyWith(loading: false, groups: event.groups),
+        store: state.store.copyWith(groups: event.groups),
       ),
     );
   }
