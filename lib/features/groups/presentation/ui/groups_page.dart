@@ -6,6 +6,12 @@ import 'package:sky_design_system/sky_design_system.dart';
 import 'package:splittr/di/injection.dart';
 import 'package:splittr/features/groups/presentation/blocs/groups_bloc.dart';
 import 'package:splittr/features/groups/presentation/ui/widgets/create_group_bottom_sheet.dart';
+import 'package:splittr/features/groups/presentation/ui/widgets/group_actions_fab.dart';
+import 'package:splittr/features/groups/presentation/ui/widgets/groups_empty_state.dart';
+import 'package:splittr/features/groups/presentation/ui/widgets/groups_error_state.dart';
+import 'package:splittr/features/groups/presentation/ui/widgets/groups_list_view.dart';
+import 'package:splittr/features/groups/presentation/ui/widgets/groups_shimmer_list.dart';
+import 'package:splittr/features/groups/presentation/ui/widgets/join_group_bottom_sheet.dart';
 
 part 'groups_form.dart';
 
@@ -22,9 +28,9 @@ class GroupsPage extends BasePage<GroupsBloc, GroupsState> {
   @override
   Widget buildPage(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _showCreateGroupSheet(context),
-        child: const AppIcon.md(Icons.add),
+      floatingActionButton: GroupActionsFab(
+        onCreateTapped: () => _showCreateGroupSheet(context),
+        onJoinTapped: () => _showJoinGroupSheet(context),
       ),
       body: const _GroupsForm(),
     );
@@ -35,6 +41,15 @@ class GroupsPage extends BasePage<GroupsBloc, GroupsState> {
       AppBottomSheet.show<void>(
         context: context,
         child: const CreateGroupBottomSheet(),
+      ),
+    );
+  }
+
+  void _showJoinGroupSheet(BuildContext context) {
+    unawaited(
+      AppBottomSheet.show<void>(
+        context: context,
+        child: const JoinGroupBottomSheet(),
       ),
     );
   }

@@ -7,7 +7,9 @@ import 'package:splittr/features/auth/presentation/pages/login/login_page.dart';
 import 'package:splittr/features/auth/presentation/pages/sign_up/sign_up_page.dart';
 import 'package:splittr/features/dashboard/presentation/ui/dashboard_page.dart';
 import 'package:splittr/features/dashboard/presentation/ui/dashboard_shell.dart';
+import 'package:splittr/features/groups/presentation/ui/group_details/group_details_page.dart';
 import 'package:splittr/features/groups/presentation/ui/groups_page.dart';
+import 'package:splittr/features/groups/presentation/ui/join_group_page.dart';
 import 'package:splittr/features/notifications/presentation/ui/notifications_page.dart';
 import 'package:splittr/features/profile/presentation/ui/profile_page.dart';
 import 'package:splittr/features/quick_settle/presentation/ui/quick_settle_page.dart';
@@ -75,8 +77,14 @@ String? _redirect(AuthBloc authBloc, GoRouterState state) {
 
   // User is authenticated.
   if (authState case OnUserAuthenticated _) {
-    // If on a public route (splash/login/signUp), redirect to dashboard.
-    if (isOnPublicRoute) return RoutePaths.dashboard;
+    // If on a public route (splash/login/signUp), redirect to dashboard (or redirect target).
+    if (isOnPublicRoute) {
+      final redirectTarget = state.uri.queryParameters['redirect'];
+      if (redirectTarget != null) {
+        return Uri.decodeComponent(redirectTarget);
+      }
+      return RoutePaths.dashboard;
+    }
     return null;
   }
 
@@ -100,8 +108,10 @@ String? _redirect(AuthBloc authBloc, GoRouterState state) {
       if (isOnSplash) return RoutePaths.login;
       return null;
     }
-    // Redirect any protected route to login.
-    return RoutePaths.login;
+    // Redirect any protected route to login, passing the original location
+    // as a redirect param.
+    final target = state.uri.toString();
+    return '${RoutePaths.login}?redirect=${Uri.encodeComponent(target)}';
   }
 
   return null;
@@ -149,6 +159,20 @@ final List<RouteBase> _routes = [
             child: GroupsPage(),
           ),
         ),
+        routes: [
+          GoRoute(
+            path: RoutePaths.groupDetails,
+            builder: (context, state) =>
+                GroupDetailsPage(args: state.extra as Map<String, dynamic>?),
+          ),
+          GoRoute(
+            path: RoutePaths.joinGroup,
+            builder: (context, state) {
+              final code = state.pathParameters['code'] ?? '';
+              return JoinGroupPage(inviteCode: code);
+            },
+          ),
+        ],
       ),
       GoRoute(
         path: RoutePaths.profile,

@@ -6,6 +6,10 @@ abstract interface class GroupsRepository {
 
   FutureEitherFailure<List<Group>> getGroups();
 
+  FutureEitherFailure<Group> joinGroup({
+    required String inviteCode,
+  });
+
   FutureEitherFailure<Group> createGroup({
     required String name,
     required String description,

@@ -54,6 +54,18 @@ final class GroupsRepositoryImpl implements GroupsRepository {
   }
 
   @override
+  FutureEitherFailure<Group> joinGroup({required String inviteCode}) async {
+    final result = await _apiCallHandler.handle(
+      () => _groupsRemoteDataSource.joinGroup(inviteCode: inviteCode),
+    );
+
+    return result.map((groupModel) {
+      unawaited(getGroups());
+      return groupModel.toDomain();
+    });
+  }
+
+  @override
   @disposeMethod
   Future<void> dispose() async {
     await _groupsSubject.close();

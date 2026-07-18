@@ -93,8 +93,70 @@ class AppLocalizationsEn extends AppLocalizations {
   String get createGroup => 'Create Group';
 
   @override
+  String get joinGroup => 'Join Group';
+
+  @override
   String get activities => 'Activities';
 
   @override
   String get logout => 'Logout';
+
+  @override
+  String get profile => 'Profile';
+
+  @override
+  String get enterCode => 'Enter the invite code shared by your friend.';
+
+  @override
+  String get groupCode => 'Group Code';
+
+  @override
+  String get validGroupCode => 'Please enter a valid group code';
+
+  @override
+  String get failedToJoinGroup => 'Failed to join group';
+
+  @override
+  String get goToDashboard => 'Go to Dashboard';
+
+  @override
+  String get joiningGroup => 'Joining group...';
+
+  @override
+  String get joiningGroupSubtitle =>
+      'Please wait while we add you to the group.';
+
+  @override
+  String get inviteCode => 'Invite Code';
+
+  @override
+  String get inviteLink => 'Invite Link';
+
+  @override
+  String get copyCode => 'Copy Code';
+
+  @override
+  String get copyLink => 'Copy Link';
+
+  @override
+  String get inviteCodeCopied => 'Invite code copied to clipboard!';
+
+  @override
+  String get inviteLinkCopied => 'Invite link copied to clipboard!';
+
+  @override
+  String get noGroupsYet => 'No groups yet';
+
+  @override
+  String get createGroupEmptyStateSubtitle =>
+      'Create a group to start splitting expenses with your friends.';
+
+  @override
+  String get youAreOwed => 'You are owed';
+
+  @override
+  String get youOwe => 'You owe';
+
+  @override
+  String get settleUp => 'Settle up';
 }

@@ -262,6 +262,12 @@ abstract class AppLocalizations {
   /// **'Create Group'**
   String get createGroup;
 
+  /// No description provided for @joinGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Join Group'**
+  String get joinGroup;
+
   /// No description provided for @activities.
   ///
   /// In en, this message translates to:
@@ -273,6 +279,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Logout'**
   String get logout;
+
+  /// No description provided for @profile.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profile;
+
+  /// No description provided for @enterCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the invite code shared by your friend.'**
+  String get enterCode;
+
+  /// No description provided for @groupCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Group Code'**
+  String get groupCode;
+
+  /// No description provided for @validGroupCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid group code'**
+  String get validGroupCode;
+
+  /// No description provided for @failedToJoinGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to join group'**
+  String get failedToJoinGroup;
+
+  /// No description provided for @goToDashboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Go to Dashboard'**
+  String get goToDashboard;
+
+  /// No description provided for @joiningGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Joining group...'**
+  String get joiningGroup;
+
+  /// No description provided for @joiningGroupSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Please wait while we add you to the group.'**
+  String get joiningGroupSubtitle;
+
+  /// No description provided for @inviteCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite Code'**
+  String get inviteCode;
+
+  /// No description provided for @inviteLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite Link'**
+  String get inviteLink;
+
+  /// No description provided for @copyCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Code'**
+  String get copyCode;
+
+  /// No description provided for @copyLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Copy Link'**
+  String get copyLink;
+
+  /// No description provided for @inviteCodeCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite code copied to clipboard!'**
+  String get inviteCodeCopied;
+
+  /// No description provided for @inviteLinkCopied.
+  ///
+  /// In en, this message translates to:
+  /// **'Invite link copied to clipboard!'**
+  String get inviteLinkCopied;
+
+  /// No description provided for @noGroupsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No groups yet'**
+  String get noGroupsYet;
+
+  /// No description provided for @createGroupEmptyStateSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a group to start splitting expenses with your friends.'**
+  String get createGroupEmptyStateSubtitle;
+
+  /// No description provided for @youAreOwed.
+  ///
+  /// In en, this message translates to:
+  /// **'You are owed'**
+  String get youAreOwed;
+
+  /// No description provided for @youOwe.
+  ///
+  /// In en, this message translates to:
+  /// **'You owe'**
+  String get youOwe;
+
+  /// No description provided for @settleUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Settle up'**
+  String get settleUp;
 }
 
 class _AppLocalizationsDelegate
