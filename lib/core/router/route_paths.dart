@@ -24,6 +24,5 @@ final class RoutePaths {
       '/group-dashboard/$groupId';
 
   /// Generates a join group path with a specific [inviteCode].
-  static String joinGroupPath(String inviteCode) =>
-      '/join-group/$inviteCode';
+  static String joinGroupPath(String inviteCode) => '/join-group/$inviteCode';
 }
