@@ -363,6 +363,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Invite link copied to clipboard!'**
   String get inviteLinkCopied;
+
+  /// No description provided for @noGroupsYet.
+  ///
+  /// In en, this message translates to:
+  /// **'No groups yet'**
+  String get noGroupsYet;
+
+  /// No description provided for @createGroupEmptyStateSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a group to start splitting expenses with your friends.'**
+  String get createGroupEmptyStateSubtitle;
+
+  /// No description provided for @youAreOwed.
+  ///
+  /// In en, this message translates to:
+  /// **'You are owed'**
+  String get youAreOwed;
+
+  /// No description provided for @youOwe.
+  ///
+  /// In en, this message translates to:
+  /// **'You owe'**
+  String get youOwe;
+
+  /// No description provided for @settleUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Settle up'**
+  String get settleUp;
 }
 
 class _AppLocalizationsDelegate

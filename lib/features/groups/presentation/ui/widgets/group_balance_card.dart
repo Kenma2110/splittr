@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:sky_design_system/sky_design_system.dart';
+import 'package:splittr/utils/extensions/extensions.dart';
 
 enum BalanceState { owed, owes, settled }
 
@@ -36,17 +37,17 @@ class GroupBalanceCard extends StatelessWidget {
         statusColor = isDark
             ? Colors.greenAccent.shade400
             : Colors.green.shade700;
-        statusText = 'You are owed';
+        statusText = context.strings.youAreOwed;
       case BalanceState.owes:
         // Semantic color for owing money (red/orange)
         statusColor = context.colorScheme.error;
-        statusText = 'You owe';
+        statusText = context.strings.youOwe;
       case BalanceState.settled:
         // Muted gray for settled status
         statusColor = context.colorScheme.onSurfaceVariant.withValues(
           alpha: 0.7,
         );
-        statusText = 'Settle up';
+        statusText = context.strings.settleUp;
     }
 
     return AppCard.outlined(
@@ -79,21 +80,16 @@ class GroupBalanceCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
+                    AppText.titleMedium(
                       title,
-                      style: context.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                        color: context.colorScheme.onSurface,
-                      ),
+                      color: context.colorScheme.onSurface,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     const SizedBox(height: 4),
-                    Text(
+                    AppText.bodyMedium(
                       subtitle,
-                      style: context.textTheme.bodyMedium?.copyWith(
-                        color: context.colorScheme.onSurfaceVariant,
-                      ),
+                      color: context.colorScheme.onSurfaceVariant,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -106,21 +102,15 @@ class GroupBalanceCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
+                  AppText.labelMedium(
                     statusText,
-                    style: context.textTheme.labelMedium?.copyWith(
-                      color: statusColor,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    color: statusColor,
                   ),
                   if (balanceState != BalanceState.settled) ...[
                     const SizedBox(height: 4),
-                    Text(
+                    AppText.titleMedium(
                       amountText,
-                      style: context.textTheme.titleMedium?.copyWith(
-                        color: statusColor,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      color: statusColor,
                     ),
                   ],
                 ],

@@ -44,5 +44,10 @@
   "copyCode": "Copy Code",
   "copyLink": "Copy Link",
   "inviteCodeCopied": "Invite code copied to clipboard!",
-  "inviteLinkCopied": "Invite link copied to clipboard!"
+  "inviteLinkCopied": "Invite link copied to clipboard!",
+  "noGroupsYet": "No groups yet",
+  "createGroupEmptyStateSubtitle": "Create a group to start splitting expenses with your friends.",
+  "youAreOwed": "You are owed",
+  "youOwe": "You owe",
+  "settleUp": "Settle up"
 }

@@ -46,14 +46,12 @@ class _InviteCodeCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              AppText.labelMedium(
                 context.strings.inviteCode,
-                style: context.textTheme.labelMedium?.copyWith(
-                  color: context.colorScheme.onSurfaceVariant,
-                ),
+                color: context.colorScheme.onSurfaceVariant,
               ),
               const SizedBox(height: AppSpacing.xs),
-              Text(inviteCode),
+              AppText.bodyMedium(inviteCode),
             ],
           ),
           IconButton.filledTonal(
@@ -67,7 +65,7 @@ class _InviteCodeCard extends StatelessWidget {
                 );
               }
             },
-            icon: const Icon(Icons.copy_rounded),
+            icon: const AppIcon.md(Icons.copy_rounded),
             tooltip: context.strings.copyCode,
           ),
         ],
@@ -83,17 +81,7 @@ class _InviteLinkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final baseUri = Uri.parse(appConfig.deeplinkBaseUrl);
-
-    final inviteLink = baseUri
-        .replace(
-          pathSegments: [
-            ...baseUri.pathSegments.where((segment) => segment.isNotEmpty),
-            'join-group',
-            inviteCode,
-          ],
-        )
-        .toString();
+    final inviteLink = RoutePaths.joinGroupPath(inviteCode);
 
     return Container(
       padding: const EdgeInsets.symmetric(
@@ -114,14 +102,12 @@ class _InviteLinkCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                AppText.labelMedium(
                   context.strings.inviteLink,
-                  style: context.textTheme.labelMedium?.copyWith(
-                    color: context.colorScheme.onSurfaceVariant,
-                  ),
+                  color: context.colorScheme.onSurfaceVariant,
                 ),
                 const SizedBox(height: AppSpacing.xs),
-                Text(
+                AppText.bodyMedium(
                   inviteLink,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -140,7 +126,7 @@ class _InviteLinkCard extends StatelessWidget {
                 );
               }
             },
-            icon: const Icon(Icons.link_rounded),
+            icon: const AppIcon.md(Icons.link_rounded),
             tooltip: context.strings.copyLink,
           ),
         ],

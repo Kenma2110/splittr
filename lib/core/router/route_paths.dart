@@ -1,3 +1,5 @@
+import 'package:splittr/core/app_config/i_app_config.dart';
+
 /// Centralized route path definitions for the Splittr app.
 ///
 /// These constants define the URL paths used by GoRouter.
@@ -11,12 +13,12 @@ final class RoutePaths {
   static const dashboard = '/dashboard';
   static const groups = '/groups';
   static const groupDetails = '/groups/group-details';
+  static const joinGroup = '/groups/join-group/:code';
   static const profile = '/profile';
   static const groupDashboard = '/group-dashboard/:groupId';
   static const quickSettle = '/quick-settle';
   static const quickSplit = '/quick-split';
   static const splitHistory = '/split-history';
-  static const joinGroup = '/join-group/:code';
   static const notifications = '/notifications';
 
   /// Generates a group dashboard path with a specific [groupId].
@@ -24,5 +26,9 @@ final class RoutePaths {
       '/group-dashboard/$groupId';
 
   /// Generates a join group path with a specific [inviteCode].
-  static String joinGroupPath(String inviteCode) => '/join-group/$inviteCode';
+  static String joinGroupPath(String inviteCode) {
+    final baseUri = Uri.parse(appConfig.deeplinkBaseUrl);
+
+    return '$baseUri/groups/join-group/$inviteCode';
+  }
 }

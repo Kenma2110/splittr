@@ -133,18 +133,6 @@ final List<RouteBase> _routes = [
     builder: (context, state) =>
         SignUpPage(args: state.extra as Map<String, dynamic>?),
   ),
-  GoRoute(
-    path: RoutePaths.groupDetails,
-    builder: (context, state) =>
-        GroupDetailsPage(args: state.extra as Map<String, dynamic>?),
-  ),
-  GoRoute(
-    path: RoutePaths.joinGroup,
-    builder: (context, state) {
-      final code = state.pathParameters['code'] ?? '';
-      return JoinGroupPage(inviteCode: code);
-    },
-  ),
   ShellRoute(
     builder: (context, state, child) => DashboardShell(
       currentLocation: state.matchedLocation,
@@ -171,6 +159,20 @@ final List<RouteBase> _routes = [
             child: GroupsPage(),
           ),
         ),
+        routes: [
+          GoRoute(
+            path: RoutePaths.groupDetails,
+            builder: (context, state) =>
+                GroupDetailsPage(args: state.extra as Map<String, dynamic>?),
+          ),
+          GoRoute(
+            path: RoutePaths.joinGroup,
+            builder: (context, state) {
+              final code = state.pathParameters['code'] ?? '';
+              return JoinGroupPage(inviteCode: code);
+            },
+          ),
+        ],
       ),
       GoRoute(
         path: RoutePaths.profile,

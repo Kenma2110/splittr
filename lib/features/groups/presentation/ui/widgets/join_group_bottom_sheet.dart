@@ -60,16 +60,13 @@ class _JoinGroupBottomSheetState extends State<JoinGroupBottomSheet> {
             return AppScrollView(
               mainAxisSize: .min,
               children: [
-                Text(
+                AppText.titleLarge(
                   context.strings.joinGroup,
-                  style: context.textTheme.titleLarge,
                 ),
                 const SizedBox(height: AppSpacing.sm),
-                Text(
+                AppText.bodyMedium(
                   context.strings.enterCode,
-                  style: context.textTheme.bodyMedium?.copyWith(
-                    color: context.colorScheme.onSurfaceVariant,
-                  ),
+                  color: context.colorScheme.onSurfaceVariant,
                 ),
                 const SizedBox(height: AppSpacing.md),
                 AppTextField(

@@ -127,11 +127,8 @@ class _ActionItem extends StatelessWidget {
                   horizontal: 12,
                   vertical: 8,
                 ),
-                child: Text(
+                child: AppText.labelLarge(
                   label,
-                  style: context.textTheme.labelLarge?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
                 ),
               ),
             ),
@@ -140,7 +137,7 @@ class _ActionItem extends StatelessWidget {
               heroTag: label,
               onPressed: onPressed,
               backgroundColor: context.colorScheme.primaryContainer,
-              child: Icon(icon),
+              child: AppIcon.md(icon),
             ),
           ],
         ),

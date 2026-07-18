@@ -143,4 +143,20 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get inviteLinkCopied => 'Invite link copied to clipboard!';
+
+  @override
+  String get noGroupsYet => 'No groups yet';
+
+  @override
+  String get createGroupEmptyStateSubtitle =>
+      'Create a group to start splitting expenses with your friends.';
+
+  @override
+  String get youAreOwed => 'You are owed';
+
+  @override
+  String get youOwe => 'You owe';
+
+  @override
+  String get settleUp => 'Settle up';
 }

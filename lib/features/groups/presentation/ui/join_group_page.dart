@@ -49,24 +49,18 @@ class JoinGroupPage extends BasePage<JoinGroupCubit, JoinGroupState> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    AppIcon.lg(
                       Icons.error_outline_rounded,
-                      size: 64,
                       color: context.colorScheme.error,
                     ),
                     const SizedBox(height: AppSpacing.md),
-                    Text(
+                    AppText.titleMedium(
                       context.strings.failedToJoinGroup,
-                      style: context.textTheme.titleMedium?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
                     ),
                     const SizedBox(height: AppSpacing.sm),
-                    Text(
+                    AppText.bodyMedium(
                       state.failure.message,
-                      style: context.textTheme.bodyMedium?.copyWith(
-                        color: context.colorScheme.error,
-                      ),
+                      color: context.colorScheme.error,
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: AppSpacing.xl),
@@ -85,16 +79,13 @@ class JoinGroupPage extends BasePage<JoinGroupCubit, JoinGroupState> {
                 children: [
                   const AppProgressIndicator.circular(),
                   const SizedBox(height: AppSpacing.xl),
-                  Text(
+                  AppText.titleMedium(
                     context.strings.joiningGroup,
-                    style: context.textTheme.titleMedium,
                   ),
                   const SizedBox(height: AppSpacing.sm),
-                  Text(
+                  AppText.bodyMedium(
                     context.strings.joiningGroupSubtitle,
-                    style: context.textTheme.bodyMedium?.copyWith(
-                      color: context.colorScheme.onSurfaceVariant,
-                    ),
+                    color: context.colorScheme.onSurfaceVariant,
                     textAlign: TextAlign.center,
                   ),
                 ],

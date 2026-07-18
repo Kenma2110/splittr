@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sky_design_system/sky_design_system.dart';
+import 'package:splittr/utils/extensions/extensions.dart';
 
 class GroupsEmptyState extends StatelessWidget {
   const GroupsEmptyState({super.key});
@@ -12,27 +13,21 @@ class GroupsEmptyState extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            AppIcon.lg(
               Icons.group_off_outlined,
-              size: 64,
               color: context.colorScheme.onSurfaceVariant.withValues(
                 alpha: 0.5,
               ),
             ),
             const SizedBox(height: AppSpacing.lg),
-            Text(
-              'No groups yet',
-              style: context.textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+            AppText.titleLarge(
+              context.strings.noGroupsYet,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: AppSpacing.xs),
-            Text(
-              'Create a group to start splitting expenses with your friends.',
-              style: context.textTheme.bodyMedium?.copyWith(
-                color: context.colorScheme.onSurfaceVariant,
-              ),
+            AppText.bodyMedium(
+              context.strings.createGroupEmptyStateSubtitle,
+              color: context.colorScheme.onSurfaceVariant,
               textAlign: TextAlign.center,
             ),
           ],

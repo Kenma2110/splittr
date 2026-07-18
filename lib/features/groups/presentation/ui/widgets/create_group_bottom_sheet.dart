@@ -33,9 +33,8 @@ class _BottomSheetBody extends StatelessWidget {
     return AppScrollView(
       mainAxisSize: .min,
       children: [
-        Text(
+        AppText.titleLarge(
           context.strings.createGroup,
-          style: context.textTheme.titleLarge,
         ),
         const SizedBox(height: AppSpacing.md),
         AppTextField(

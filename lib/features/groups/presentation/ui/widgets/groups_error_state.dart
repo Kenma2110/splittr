@@ -17,19 +17,14 @@ class GroupsErrorState extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
+            AppIcon.lg(
               Icons.error_outline_rounded,
-              size: 48,
               color: context.colorScheme.error,
             ),
             const SizedBox(height: AppSpacing.md),
-            Text(
+            AppText.titleMedium(
               message,
-              style: TextStyle(
-                color: context.colorScheme.error,
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-              ),
+              color: context.colorScheme.error,
               textAlign: TextAlign.center,
             ),
           ],
