@@ -8,6 +8,7 @@ import 'package:splittr/features/auth/presentation/pages/sign_up/sign_up_page.da
 import 'package:splittr/features/dashboard/presentation/ui/dashboard_page.dart';
 import 'package:splittr/features/dashboard/presentation/ui/dashboard_shell.dart';
 import 'package:splittr/features/groups/presentation/ui/groups_page.dart';
+import 'package:splittr/features/notifications/presentation/ui/notifications_page.dart';
 import 'package:splittr/features/profile/presentation/ui/profile_page.dart';
 import 'package:splittr/features/quick_settle/presentation/ui/quick_settle_page.dart';
 import 'package:splittr/features/quick_split/presentation/ui/quick_split_page.dart';
@@ -175,6 +176,12 @@ final List<RouteBase> _routes = [
     path: RoutePaths.splitHistory,
     builder: (context, state) =>
         SplitHistoryPage(args: state.extra as Map<String, dynamic>?),
+  ),
+  GoRoute(
+    path: RoutePaths.notifications,
+    builder: (context, state) => NotificationsPage(
+      args: state.extra as Map<String, dynamic>?,
+    ),
   ),
 ];
 
